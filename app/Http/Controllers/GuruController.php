@@ -91,8 +91,8 @@ class GuruController extends Controller
      */
     public function destroy($id)
     {
-        $data = Guru::findOrFail($id);
-        $data->delete();
+        $data = Guru::findOrFail($id)->delete();
+
         if($data){
             //redirect dengan pesan sukses
             return redirect()->route('guru.index')->with(['success' => 'Data Berhasil Dihapus!']);
