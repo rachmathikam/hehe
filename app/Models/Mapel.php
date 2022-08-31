@@ -13,6 +13,6 @@ class Mapel extends Model
 
 
     public function guru(){
-        return $this->belongsTo(Guru::class,);
+        return $this->hasOne(Guru::class,);
     }
 }

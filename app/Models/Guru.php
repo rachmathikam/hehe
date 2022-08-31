@@ -19,7 +19,7 @@ class Guru extends Model
 
     public function mapel()
     {
-        return $this->hasOne(Mapel::class,);
+        return $this->belongsTo(Mapel::class,);
     }
 
 }

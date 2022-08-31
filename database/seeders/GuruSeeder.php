@@ -30,7 +30,7 @@ class GuruSeeder extends Seeder
                 'no_telp' => '088437643',
                 'tanggal_lahir' => '1990-12-2',
                 'tempat_lahir' => 'Sumenep',
-
+                'mapel_id'  => 1
             ],
             [
                 'user_id' => '2',
@@ -42,7 +42,7 @@ class GuruSeeder extends Seeder
                 'no_telp' => '08943774363',
                 'tanggal_lahir' => '1995-12-2',
                 'tempat_lahir' => 'Sumenep',
-
+                'mapel_id' => 2
             ]
         ]);
 
