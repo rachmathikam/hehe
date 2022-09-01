@@ -57,7 +57,8 @@ class GuruController extends Controller
      */
     public function create()
     {
-        return view('pages.guru.create');
+        $data = Guru::all();
+        return view('pages.guru.create', compact('data'));
     }
 
     /**
@@ -68,7 +69,39 @@ class GuruController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'nip'  => 'required',
+            'name' => 'required',
+            'email' => 'required|string|email|max:255|unique:gurus',
+            'password' => 'required|min:5',
+            'tempat_lahir' => 'nullable',
+            'tanggal_lahir' => 'nullable',
+            'jenis_kelamin' => 'required',
+            'alamat' => 'nullable',
+            'no_telp' => 'nullable',
+            'role_id' =>'required',
+            'mapel_id' =>'required',
+        ],
+        [
+            'jenis_kelamin.required' => 'Jenis kelamin harus terisi'
+        ]);
+        $input['password'] = Hash::make($request->password);
+        $input = $request->all();
 
+        $data = User::create([
+            'nip'  => $input['nip'],
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'tempat_lahir' => $input['tempat_lahir'],
+            'tanggal_lahir' => $input['tanggal_lahir'],
+            'gender_id' => $input['gender_id'],
+            'alamat' => $input['alamat'],
+            'no_telp' => $input['no_telp'],
+            'role_id' => 2,
+            'mapel_id' => $input['mapel_id'],
+
+        ]);
+        dd($data);
     }
 
     /**

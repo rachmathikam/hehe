@@ -17,6 +17,9 @@
     <div class="card">
         <div class="card-header">
             <h5>Tabel Data Guru</h5>
+            <a href="{{ route('guru.create') }}"><button class="btn btn-primary btn-xs" type="button">
+                <i class="fa-solid fa-plus">Tambah</i>
+            </button></a>
         </div>
         <div class="card-body">
             <div class="table-responsive">

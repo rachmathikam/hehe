@@ -43,6 +43,18 @@ class GuruSeeder extends Seeder
                 'tanggal_lahir' => '1995-12-2',
                 'tempat_lahir' => 'Sumenep',
                 'mapel_id' => 2
+            ],
+            [
+                'user_id' => '2',
+                'agama' => 'Islam',
+                'alamat' => 'Jln.Meranggi',
+                'gender' => 'laki-laki',
+                'nip' => '126732632133',
+                'nama' => 'Rachmat Hikam',
+                'no_telp' => '08943774363',
+                'tanggal_lahir' => '1995-12-2',
+                'tempat_lahir' => 'Sumenep',
+                'mapel_id' => 5
             ]
         ]);
 
