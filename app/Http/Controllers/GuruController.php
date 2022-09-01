@@ -7,7 +7,6 @@ use App\Models\Guru;
 use Auth;
 use DataTables;
 
-
 class GuruController extends Controller
 {
     public function __construct()
@@ -18,7 +17,6 @@ class GuruController extends Controller
 
     public function index(Request $request)
     {
-        $page = 'kontak';
         $data = Guru::with('mapel','user')->get();
         // dd($data);
         if($request->ajax()){
