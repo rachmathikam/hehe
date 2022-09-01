@@ -15,7 +15,7 @@ class GuruController extends Controller
         $this->middleware('auth');
         $this->middleware('admin');
     }
-   
+
     public function index(Request $request)
     {
         $page = 'kontak';
@@ -47,7 +47,7 @@ class GuruController extends Controller
                 ->make(true);
         }
 
-        return view('pages.guru.index',compact('page', 'data'));
+        return view('pages.guru.index',compact('data'));
     }
 
     /**
