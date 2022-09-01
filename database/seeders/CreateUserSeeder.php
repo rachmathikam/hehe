@@ -12,28 +12,28 @@ class CreateUserSeeder extends Seeder
     {
         User::insert([
             [
-                'name' => 'Admin',
+                'username' => 'Admin',
                 'email' => 'admin@gmail.com',
                 'password' => bcrypt('admin123'),
                 'image' => 'storage/image/hero.jpg',
                 'role_id' => '1'
             ],
             [
-                'name' => 'Budiman',
+                'username' => 'Budiman',
                 'email' => 'budi@gmail.com',
                 'password' => bcrypt('budi123'),
                 'image' => 'storage/image/hero.jpg',
                 'role_id' => '2'
             ],
             [
-                'name' => 'Yasin',
+                'username' => 'Yasin',
                 'email' => 'yasin@gmail.com',
                 'password' => bcrypt('yasin123'),
                 'image' => 'storage/image/hero.jpg',
                 'role_id' => '3'
             ],
             [
-                'name' => 'Rachmat Hikam',
+                'username' => 'Rachmat Hikam',
                 'email' => 'hikam@gmail.com',
                 'password' => bcrypt('hikam123'),
                 'image' => 'storage/image/hero.jpg',

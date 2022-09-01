@@ -12,6 +12,6 @@ class Role extends Model
     protected $guarded = [];
 
     public function user(){
-        return $this->hasOne(User::class,);
+        return $this->hasOne(User::class);
     }
 }

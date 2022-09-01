@@ -60,18 +60,24 @@
                             <label class="pb-3 mb-0">Jenis Kelamin</label>
                             <div class="col-auto">
                                 <input class="form-control" type="text" value="{{ $data->gender }}"
-                                    name="jenis_kelamin" placeholder="Jenis Kelamin" />
+                                    name="gender" placeholder="Jenis Kelamin" />
                             </div>
                         </div>
                         <div class="mt-4 mb-4">
                             <div class="row">
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <label class="pb-3 mb-0">Role</label>
-                                    <input type="text" class="form-control" name="tempat_lahir" value="{{ $data->user->role->role }}" placeholder="">
-                                </div>
+                                    <input type="text" class="form-control" name="role_id" value="{{ $data->user->role->role }}"  placeholder="" >
+                                </div> --}}
                                 <div class="col-md-6">
-                                    <label class="pb-3 mb-0">Mengajar</label>
-                                    <input type="text" class="form-control" name="tanggal_lahir"  value="{{ $data->mapel->name }}">
+                                    <label for="mapel" class="form-label">Mengajar</label>
+                                    <select name="mapel_id" id="mapel" class="form-control @error('mapel_id') is-invalid @enderror">
+                                    <option value="">-- Pilih Role --</option>
+                                        @foreach ($mapel as $mapels)
+                                            <option value="{{ $mapels->id }}" @selected($mapels->id == $data->mapel_id)>{{ $mapels->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -96,8 +102,9 @@
                     <div class="card-footer">
                         <button class="btn btn-primary" type="submit">Submit</button>
                         <a  href="{{ route('guru.index') }}" class="btn btn-secondary" >Cancel</a>
-                     </form>
                     </div>
+                </form>
+                </div>
                 </div>
             </div>
 
