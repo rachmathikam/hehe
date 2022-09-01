@@ -64,16 +64,16 @@ class GuruController extends Controller
         $input = $request->all();
 
         $data = User::create([
-            'nip'  => $input['nip'],
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'tempat_lahir' => $input['tempat_lahir'],
-            'tanggal_lahir' => $input['tanggal_lahir'],
-            'gender_id' => $input['gender_id'],
-            'alamat' => $input['alamat'],
-            'no_telp' => $input['no_telp'],
-            'role_id' => 2,
-            'mapel_id' => $input['mapel_id'],
+            // 'nip'  => $input['nip'],
+            // 'name' => $input['name'],
+            // 'email' => $input['email'],
+            // 'tempat_lahir' => $input['tempat_lahir'],
+            // 'tanggal_lahir' => $input['tanggal_lahir'],
+            // 'gender_id' => $input['gender_id'],
+            // 'alamat' => $input['alamat'],
+            // 'no_telp' => $input['no_telp'],
+            // 'role_id' => 2,
+            // 'mapel_id' => $input['mapel_id'],
 
         ]);
         dd($data);
