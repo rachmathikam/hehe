@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Guru;
 use Auth;
+use DataTables;
 
 
 class GuruController extends Controller
@@ -14,15 +15,39 @@ class GuruController extends Controller
         $this->middleware('auth');
         $this->middleware('admin');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+   
+    public function index(Request $request)
     {
-        $data = Guru::all();
-        return view('pages.guru.index',compact('data'));
+        $page = 'kontak';
+        $data = Guru::with('mapel','user')->get();
+        // dd($data);
+        if($request->ajax()){
+            return DataTables::of($data)
+                ->addColumn('nip', function($row){
+                    return $row->nip ;
+                })
+                ->addColumn('nama', function($row){
+                    return $row->nama ;
+                })
+                ->addColumn('mapel', function($row){
+                    return $row->mapel->name ;
+                })
+                ->addColumn('action', function($row){
+                    $button  = '';
+                    $button .= '&nbsp;&nbsp;';
+                    $button .= '<a href="'.route('guru.edit',$row->id).'"><i class="mdi mdi-grease-pencil"></i></i></a>';
+                    $button .= '&nbsp;&nbsp;';
+                    $button .= '<a class="cursor-pointer btn-show" data-toggle="modal" data-id="'.$row->id.'"><i class="mdi mdi-eye"></i></i></a>';
+                    $button .= '&nbsp;&nbsp;';
+                    $button .= '<a href="javascript:void(0)" onclick="deleteItem(this)" data-name="'.$row->nama.'" data-id="'.$row->id.'"> <i class="mdi mdi-delete-forever text-danger"></a>';
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->addIndexColumn()
+                ->make(true);
+        }
+
+        return view('pages.guru.index',compact('page', 'data'));
     }
 
     /**
