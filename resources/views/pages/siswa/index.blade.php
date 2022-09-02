@@ -7,18 +7,18 @@
     <div class="page-header">
         <div class="row">
             <div class="col-lg-6">
-                <h3>Tabel Guru</h3>
+                <h3>Tabel Siswa</h3>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item">Guru</li>
+                    <li class="breadcrumb-item">Siswa</li>
                 </ol>
             </div>
 
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
-                        <h5>Feature Unable /Disable</h5>
-                        <a class="btn btn-primary btn-sm" href="{{ route('guru.create') }}">Tambah Guru</a>
+                        <h5>Data Siswa</h5>
+                        <a class="btn btn-primary btn-sm" href="{{ route('siswa.create') }}">Tambah Siswa</a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -26,33 +26,35 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>NIP</th>
+                                        <th>NIS</th>
                                         <th>Nama</th>
-                                        <th>Mengajar</th>
+                                        <th>Kelas</th>
+                                        <th>Jenis Kelamin</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data as $guru)
+                                    @foreach ($data as $siswa)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $guru->nip }}</td>
-                                            <td>{{ $guru->nama }}</td>
-                                            <td>{{ $guru->mapel->name }}</td>
+                                            <td>{{ $siswa->nis }}</td>
+                                            <td>{{ $siswa->nama }}</td>
+                                            <td>{{ $siswa->grade->name }} - {{$siswa->grade->kode  }}</td>
+                                            <td>{{ $siswa->gender }}</td>
                                             <td>
                                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                    action="{{ route('guru.destroy', $guru->id) }}" method="POST">
-                                                    <a href="{{ route('guru.show', $guru->id) }}">
+                                                    action="{{ route('siswa.destroy', $siswa->id) }}" method="POST">
+                                                    <a href="{{ route('siswa.show', $siswa->id) }}">
                                                         <button class="btn btn-primary" type="button"><i
                                                                 class="mdi mdi-eye"></i></button>
                                                     </a>
-                                                    <a href="{{ route('guru.edit', $guru->id) }}">
+                                                    <a href="{{ route('siswa.edit', $siswa->id) }}">
                                                         <button class="btn btn-secondary"type="button"><i
                                                                 class="mdi mdi-grease-pencil"></i></button>
                                                     </a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <a href="{{ route('guru.destroy', $guru->id) }}">
+                                                    <a href="{{ route('siswa.destroy', $siswa->id) }}">
                                                         <button class="btn btn-danger" type="submit"><i
                                                                 class="mdi mdi-delete-forever"></i></button>
                                                     </a>

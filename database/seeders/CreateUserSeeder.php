@@ -23,7 +23,7 @@ class CreateUserSeeder extends Seeder
                 'email' => 'budi@gmail.com',
                 'password' => bcrypt('budi123'),
                 'image' => 'storage/image/hero.jpg',
-                'role_id' => '2'
+                'role_id' => '3'
             ],
             [
                 'username' => 'Yasin',
@@ -36,6 +36,14 @@ class CreateUserSeeder extends Seeder
                 'username' => 'Rachmat Hikam',
                 'email' => 'hikam@gmail.com',
                 'password' => bcrypt('hikam123'),
+                'image' => 'storage/image/hero.jpg',
+                'role_id' => '3'
+            ],
+
+            [
+                'username' => 'Ayu Adni Aurora',
+                'email' => 'aura@gmail.com',
+                'password' => bcrypt('aura123'),
                 'image' => 'storage/image/hero.jpg',
                 'role_id' => '4'
             ],

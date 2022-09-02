@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{LoginController, UserController, GuruController};
+use App\Http\Controllers\{LoginController, UserController, GuruController, SiswaController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => 'admin'], function () {
     Route::resource('guru', GuruController::class,);
+    Route::resource('siswa', SiswaController::class,);
     Route::resource('user', UserController::class,);
 });
 

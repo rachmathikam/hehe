@@ -3,14 +3,14 @@
     <div class="page-header">
         <div class="row">
             <div class="col-lg-6">
-                <h3>Tabel Guru</h3>
+                <h3>Tabel Siswa</h3>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                     <li class="breadcrumb-item">
-                        <a href="{{ route('guru.index') }}">Guru</a>
+                        <a href="{{ route('siswa.index') }}">Siswa</a>
                     </li>
                     <li class="breadcrumb-item">
-                        Edit
+                        Tambah
                     </li>
                 </ol>
             </div>
@@ -19,15 +19,15 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header pb-0">
-                                <h5>Edit Guru</h5>
+                                <h5>Tambah Siswa</h5>
                             </div>
                             <div class="card-body">
-                                <form class="theme-form mega-form" action="{{ route('guru.store') }}" method="POST"
+                                <form class="theme-form mega-form" action="{{ route('siswa.store') }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
-                                        <h7 class="pb-3 mb-0">NIP</h7>
-                                        <input class="form-control" type="text" name="nip" placeholder="NIP Guru"  value="{{ old('nip') }}">
+                                        <h7 class="pb-3 mb-0">NIS</h7>
+                                        <input class="form-control" type="text" name="nis" placeholder="NIS Siswa"  value="{{ old('nis') }}">
                                     </div>
                                     <div class="mb-3">
                                         <h7 class="pb-3 mb-0">Username</h7>
@@ -74,22 +74,15 @@
                                     <div class="mt-4 mb-4">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label for="mapel" class="form-label">Mengajar</label>
-                                                <select name="mapel_id" id="mapel" class="form-control @error('mapel_id') is-invalid @enderror">
-                                                <option value="{{ old('mapel') }}"></option>-- Mengajar --</option>
-                                                    @foreach ($mapel as $mapels)
-                                                        <option value="{{ $mapels->id }}" @selected($mapels->id )>{{ $mapels->name }}</option>
+                                                <label for="name" class="form-label">Mengajar</label>
+                                                <select name="grade_id" id="name" class="form-control @error('mapel_id') is-invalid @enderror">
+                                                <option value="{{ old('name') }}"></option>-- Mengajar --</option>
+                                                    @foreach ($kelas as $grade)
+                                                        <option value="{{ $grade->id }}" @selected($grade->id )>{{ $grade->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 </select>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="mt-4 mb-4">
-                                        <h7 class="pb-3 mb-0">No Telphone</h7>
-                                        <div class="col-auto">
-                                            <input class="form-control" type="text" name="no_telp"
-                                                placeholder="Jenis Kelamin" value="{{ old('no_telp') }}">
                                         </div>
                                     </div>
                                     <div class="mt-4 mb-4">

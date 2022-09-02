@@ -13,18 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('gurus', function (Blueprint $table) {
+        Schema::create('siswas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('mapel_id')->constrained('mapels');
-            $table->string('nip');
+            $table->foreignId('grade_id')->constrained('grades');
+            $table->string('nis');
             $table->string('nama',100);
             $table->string('tempat_lahir',40);
             $table->date('tanggal_lahir');
             $table->string('gender',10);
             $table->string('agama',20);
             $table->text('alamat');
-            $table->string('no_telp');
             $table->timestamps();
         });
     }
@@ -36,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gurus');
+        Schema::dropIfExists('siswas');
     }
 };

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Guru;
 use App\Models\Mapel;
+use App\Models\User;
+use DB;
+
 
 use Auth;
 use DataTables;
@@ -73,73 +76,65 @@ class GuruController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        $request->validate([
-            'nip'  => 'required',
-            'name' => 'required',
-            'tempat_lahir' => 'nullable',
-            'tanggal_lahir' => 'nullable',
-            'jenis_kelamin' => 'required',
-            'alamat' => 'nullable',
-            'role_id'=>'nullable',
-            'no_telp' => 'nullable',
-            'mapel_id' =>'nullable',
-        ]);
+        // $request->validate([
+        //     'username' => 'required',
+        //     'email' => 'required',
+        //     'password' => 'required',
+        //     'agama' => 'nullable',
+        //     'nip'  => 'required',
+        //     'nama' => 'required',
+        //     'tempat_lahir' => 'nullable',
+        //     'tanggal_lahir' => 'nullable',
+        //     'gender' => 'required',
+        //     'alamat' => 'nullable',
+        //     'role_id'=>'nullable',
+        //     'no_telp' => 'nullable',
+        //     'mapel_id' =>'nullable',
+        // ]);
 
-        $data = $request->validate([
-            'username' => 'required',
-            'email' => 'required',
-            'password' => 'required',
 
-        ]);
-        $input = $request->all();
-
-        // $data = Guru::create([
-        //     'nip'  => $input['nip'],
-        //     'name' => $input['name'],
-        //     'email' => $input['email'],
-        //     'tempat_lahir' => $input['tempat_lahir'],
-        //     'tanggal_lahir' => $input['tanggal_lahir'],
-        //     'gender_id' => $input['gender_id'],
-        //     'alamat' => $input['alamat'],
-        //     'no_telp' => $input['no_telp'],
-        //     'role_id' => 2,
-        //     'mapel_id' => $input['mapel_id'],
+        // dd($request);
+        // // $data = $request->validate([
 
         // ]);
-        DB::beginTransaction();
-        try {
-            $user = User::create(
-                [
-                    'username' => $data['username'],
-                    'email' => $data['email'],
-                    'password' => bcrypt($data['password']), //$data['password'],
+        $input = $request->all();
+        // dd($input);
+            DB::beginTransaction();
+            try {
+                User::create(
+                    [
+                    'username' => $input['username'],
+                    'email' => $input['email'],
+                    'password' => bcrypt($input['password']),
                     'role_id' => 3,
-                ]
-            );
+                    ]
+                );
+                // dd($user);
+                $userid = User::get()->last();
+                // dd($userid);
+                Guru::create(
+                    [
+                        'nip'  => $input['nip'],
+                        'nama' => $input['nama'],
+                        'agama' => $input['agama'],
+                        'tempat_lahir' => $input['tempat_lahir'],
+                        'tanggal_lahir' => $input['tanggal_lahir'],
+                        'gender' => $input['jenis_kelamin'],
+                        'alamat' => $input['alamat'],
+                        'no_telp' => $input['no_telp'],
+                        'user_id' => $userid->id,
+                        'mapel_id' => $input['mapel_id'],
+                    ]
+                );
+                DB::commit();
 
-            dd($user);
-            $guru = Guru::create(
-                [
-            'nip'  => $input['nip'],
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'tempat_lahir' => $input['tempat_lahir'],
-            'tanggal_lahir' => $input['tanggal_lahir'],
-            'gender_id' => $input['gender_id'],
-            'alamat' => $input['alamat'],
-            'no_telp' => $input['no_telp'],
-            'user_id' => $input['user_id'],
-            'mapel_id' => $input['mapel_id'],
-                ]
-            );
-        DB:commit();
+                return redirect()->route('guru.index')->with('success', 'Data');
 
-        return redirect()->route('guru.index')->with('success', 'Data');
+            } catch (\Exceptions $exception) {
+                DB::rollback();
 
-        } catch (\Exceptions $exception) {
-        return redirect()->route('guru.create')->with('failed', 'failed');
-        }
+                return redirect()->route('guru.create')->with('failed', 'failed');
+            }
     }
 
     /**
@@ -210,10 +205,10 @@ class GuruController extends Controller
      */
     public function destroy($id)
     {
-        $data = Guru::findOrFail($id)->delete();
+        $data = Guru::find($id);
+        $guru = User::where('id',$data['user_id'])->first();
 
-        if($data){
-            //redirect dengan pesan sukses
+        if($guru->delete()){
             return redirect()->route('guru.index')->with(['success' => 'Data Berhasil Dihapus!']);
          }else{
            //redirect dengan pesan error
