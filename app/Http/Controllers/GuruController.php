@@ -176,25 +176,25 @@ class GuruController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request->all());
-        $request->validate([
-            'nama'=> 'required',
-            'nip' => 'required',
-            'tempat_lahir' => 'required',
-            'tanggal_lahir' =>'required',
-            'agama' => 'required',
-            'gender' =>'required',
-            'mapel_id' => 'required',
-            'no_telp' => 'required',
-            'alamat' => 'required',
+                $request->validate([
+                    'nama'=> 'required',
+                    'nip' => 'required',
+                    'tempat_lahir' => 'required',
+                    'tanggal_lahir' =>'required',
+                    'agama' => 'required',
+                    'gender' =>'required',
+                    'mapel_id' => 'required',
+                    'no_telp' => 'required',
+                    'alamat' => 'required',
 
-        ]);
+                ]);
 
-        $input = $request->all();
-        // dd($input);
-        $data = Guru::findOrFail($id);
-        $data->update($input);
+                $input = $request->all();
+                // dd($input);
+                $data = Guru::findOrFail($id);
+                $data->update($input);
 
-        return redirect()->route('guru.index')->with('success', 'Data');
+                return redirect()->route('guru.index')->with('success', 'Data');
     }
 
     /**

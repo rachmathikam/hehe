@@ -7,36 +7,33 @@
     <div class="page-header">
         <div class="row">
             <div class="col-lg-6">
-                <h3>Tabel Guru</h3>
+                <h3>Tabel Kelas</h3>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item">Mapel</li>
+                    <li class="breadcrumb-item">Kelas</li>
                 </ol>
             </div>
 
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
-                        <h5>Data Mata Pelajaran</h5>
-                        <a class="btn btn-primary btn-sm" href="{{ route('mapel.create') }}">Tambah Mapel</a>
+                        <h5>Data Kelas</h5>
+                        <a class="btn btn-primary btn-sm" href="{{ route('kelas.create') }}">Tambah Kelas</a>
+                        {{-- @if ($message = Session::get('success'))
+                            <div class="alert alert-success">
+                                <p>{{ $message }}</p>
+                            </div>
+                        @endif --}}
                     </div>
-                         @if ($message = Session::get('success'))
-                            <div class="alert alert-primary dark alert-dismissible fade show float-right" width="20% !important">
-                                <p>{{ $message }}</p>
-                            </div>
-                        @endif
-                         @if ($message = Session::get('error'))
-                            <div class="alert alert-danger dark alert-dismissible fade show float-right" width="20%">
-                                <p>{{ $message }}</p>
-                            </div>
-                        @endif
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="display" id="basic-2">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Mata Pelajaran</th>
+                                        {{-- <th>Kode Kelas</th> --}}
+                                        <th>Kelas</th>
+                                        <th>siswa</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -44,21 +41,23 @@
                                     @foreach ($data as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
+                                            {{-- <td>{{ $item->kode }}</td> --}}
                                             <td>{{ $item->name }}</td>
+                                            <td>{{ $item->siswa->grade_id }}</td>
                                             <td>
                                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                    action="{{ route('mapel.destroy', $item->id) }}" method="POST">
-                                                    {{-- <a href="{{ route('mapel.show', $item->id) }}">
+                                                    action="{{ route('kelas.destroy', $item->id) }}" method="POST">
+                                                    {{-- <a href="{{ route('kelas.show', $item->id) }}">
                                                         <button class="btn btn-primary" type="button"><i
                                                                 class="mdi mdi-eye"></i></button>
                                                     </a> --}}
-                                                    <a href="{{ route('mapel.edit', $item->id) }}">
+                                                    <a href="{{ route('kelas.edit', $item->id) }}">
                                                         <button class="btn btn-secondary"type="button"><i
                                                                 class="mdi mdi-grease-pencil"></i></button>
                                                     </a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <a href="{{ route('mapel.destroy', $item->id) }}">
+                                                    <a href="{{ route('kelas.destroy', $item->id) }}">
                                                         <button class="btn btn-danger" type="submit"><i
                                                                 class="mdi mdi-delete-forever"></i></button>
                                                     </a>

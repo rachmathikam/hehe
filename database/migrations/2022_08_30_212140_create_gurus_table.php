@@ -16,7 +16,11 @@ return new class extends Migration
         Schema::create('gurus', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+<<<<<<< HEAD
             $table->foreignId('mapel_id')->references('id')->on('mapels');
+=======
+            $table->foreignId('mapel_id')->constrained('mapels')->onUpdate('cascade')->onDelete('cascade');
+>>>>>>> 6b0f037b44000be717efec89e62ca32a3ee3bb06
             $table->string('nip');
             $table->string('nama',100);
             $table->string('tempat_lahir',40);
