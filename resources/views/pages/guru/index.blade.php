@@ -19,12 +19,17 @@
                     <div class="card-header d-flex justify-content-between">
                         <h5>Feature Unable /Disable</h5>
                         <a class="btn btn-primary btn-sm" href="{{ route('guru.create') }}">Tambah Guru</a>
+                    </div>
                         @if ($message = Session::get('success'))
-                            <div class="alert alert-success">
+                            <div class="alert alert-primary dark alert-dismissible fade show float-right" width="20% !important">
                                 <p>{{ $message }}</p>
                             </div>
                         @endif
-                    </div>
+                         @if ($message = Session::get('error'))
+                            <div class="alert alert-danger dark alert-dismissible fade show float-right" width="20%">
+                                <p>{{ $message }}</p>
+                            </div>
+                        @endif
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="display" id="basic-2">

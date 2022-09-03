@@ -75,12 +75,12 @@ class MapelController extends Controller
 
     public function destroy($id)
     {
-        $data = Mapel::FindOrFail($id)->delete();
+        $data = Mapel::FindOrFail($id);
 
-        if($data){
-            return redirect()->route('mapel.index')->with('success','Data berhasil dihapus');
-        } else {
-            return redirect()->route('mapel.index')->with('error','Data gagal dihapus');
+        if($data->guru()->count()){
+            return back()->with('error', 'Mapel ini masih terkait dengan data guru!');
         }
+        $data->delete();
+        return back()->with('success','Data berhasil dihapus');
     }
 }

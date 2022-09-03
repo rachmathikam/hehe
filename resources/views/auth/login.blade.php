@@ -27,25 +27,25 @@
         href="../../css2-2.css?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
         rel="stylesheet">
     <!-- Font Awesome-->
-    <link rel="stylesheet" type="text/css" href="{{asset ('adminlte/assets/css/fontawesome.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset ('assets/css/fontawesome.css')}}">
     <!-- ico-font-->
-    <link rel="stylesheet" type="text/css" href="{{asset ('adminlte/assets/css/icofont.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset ('assets/css/icofont.css')}}">
     <!-- Themify icon-->
-    <link rel="stylesheet" type="text/css" href="{{asset ('adminlte/assets/css/themify.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset ('assets/css/themify.css')}}">
     <!-- Flag icon-->
-    <link rel="stylesheet" type="text/css" href="{{asset ('adminlte/assets/css/flag-icon.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset ('assets/css/flag-icon.css')}}">
     <!-- Feather icon-->
-    <link rel="stylesheet" type="text/css" href="{{asset ('adminlte/assets/css/feather-icon.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset ('assets/css/feather-icon.css')}}">
     <!-- Plugins css start-->
-    <link rel="stylesheet" type="text/css" href="{{asset ('adminlte/assets/css/sweetalert2.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset ('assets/css/sweetalert2.css')}}">
     <!-- Plugins css Ends-->
     <!-- Bootstrap css-->
-    <link rel="stylesheet" type="text/css" href="{{asset ('adminlte/assets/css/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset ('assets/css/bootstrap.css')}}">
     <!-- App css-->
-    <link rel="stylesheet" type="text/css" href="{{asset ('adminlte/assets/css/style.css')}}">
-    <link id="color" rel="stylesheet" href="{{asset ('adminlte/assets/css/color-1.css')}}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{asset ('assets/css/style.css')}}">
+    <link id="color" rel="stylesheet" href="{{asset ('assets/css/color-1.css')}}" media="screen">
     <!-- Responsive css-->
-    <link rel="stylesheet" type="text/css" href="{{asset('adminlte/assets/css/responsive.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}">
 </head>
 
 <body>
@@ -62,7 +62,7 @@
                             @csrf
 
                             <div class="logo-login" style="text-align: center">
-                                <img src="{{asset('adminlte/assets/images/logo/logo.png')}}"  alt="" width="150">
+                                <img src="{{asset('assets/images/logo/logo.png')}}"  alt="" width="150">
                             </div>
                             <h4 class="text-center" style="margin-bottom: 20px;">Login</h4>
                             <h6>Welcome back! Log in to your account.</h6>

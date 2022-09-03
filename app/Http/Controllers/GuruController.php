@@ -205,10 +205,11 @@ class GuruController extends Controller
      */
     public function destroy($id)
     {
-        $data = Guru::find($id);
-        $guru = User::where('id',$data['user_id'])->first();
+        $data = Guru::find($id)->user->delete();
+        // $data->user->delete()
+        // $guru = User::where('id',$data['user_id'])->first();
 
-        if($guru->delete()){
+        if($data){
             return redirect()->route('guru.index')->with(['success' => 'Data Berhasil Dihapus!']);
          }else{
            //redirect dengan pesan error

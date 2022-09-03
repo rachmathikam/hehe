@@ -34,28 +34,28 @@
 
 
 <!-- Font Awesome-->
-<link rel="stylesheet" type="text/css" href="{{ asset('adminlte/assets/css/fontawesome.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/fontawesome.css') }}">
 <!-- ico-font-->
-<link rel="stylesheet" type="text/css" href="{{ asset('adminlte/assets/css/icofont.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/icofont.css') }}">
 <!-- Themify icon-->
-<link rel="stylesheet" type="text/css" href="{{ asset('adminlte/assets/css/themify.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/themify.css') }}">
 <!-- Flag icon-->
-<link rel="stylesheet" type="text/css" href="{{ asset('adminlte/assets/css/flag-icon.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/flag-icon.css') }}">
 <!-- Feather icon-->
-<link rel="stylesheet" type="text/css" href="{{ asset('adminlte/assets/css/feather-icon.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/feather-icon.css') }}">
 <!-- Plugins css start-->
 <!-- Plugins css Ends-->
 <!-- Bootstrap css-->
-<link rel="stylesheet" type="text/css" href="{{ asset('adminlte/assets/css/bootstrap.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.css') }}">
 <!-- App css-->
 <!-- App css-->
 
-<link rel="stylesheet" type="text/css" href="{{ asset('adminlte/assets/css/style.css') }}">
-<link id="color" rel="stylesheet" href="{{ asset('adminlte/assets/css/color-1.css') }}" media="screen">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+<link id="color" rel="stylesheet" href="{{ asset('assets/css/color-1.css') }}" media="screen">
 <!-- Responsive css-->
-<link rel="stylesheet" type="text/css" href="{{ asset('adminlte/assets/css/responsive.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive.css') }}">
 <!-- Plugins css start-->
-<link rel="stylesheet" type="text/css" href="{{ asset('adminlte/assets/css/datatables.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
 
 
 </head>
@@ -96,25 +96,25 @@
     </div>
     </div>
     <!-- latest jquery-->
-    <script src="{{ asset('adminlte/assets/js/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
     <!-- feather icon js-->
-    <script src="{{ asset('adminlte/assets/js/icons/feather-icon/feather.min.js') }}"></script>
-    <script src="{{ asset('adminlte/assets/js/icons/feather-icon/feather-icon.js') }}"></script>
+    <script src="{{ asset('assets/js/icons/feather-icon/feather.min.js') }}"></script>
+    <script src="{{ asset('assets/js/icons/feather-icon/feather-icon.js') }}"></script>
     <!-- Sidebar jquery-->
-    <script src="{{ asset('adminlte/assets/js/sidebar-menu.js') }}"></script>
-    <script src="{{ asset('adminlte/assets/js/config.js') }}"></script>
+    <script src="{{ asset('assets/js/sidebar-menu.js') }}"></script>
+    <script src="{{ asset('assets/js/config.js') }}"></script>
     <!-- Bootstrap js-->
-    <script src="{{ asset('adminlte/assets/js/bootstrap/popper.min.js') }}"></script>
-    <script src="{{ asset('adminlte/assets/js/bootstrap/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('adminlte/assets/js/datepicker/date-picker/datepicker.js') }}"></script>
-    <script src="{{ asset('adminlte/assets/js/datepicker/date-picker/datepicker.en.js') }}"></script>
-    <script src="{{ asset('adminlte/assets/js/datepicker/date-picker/datepicker.custom.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/datepicker/date-picker/datepicker.js') }}"></script>
+    <script src="{{ asset('assets/js/datepicker/date-picker/datepicker.en.js') }}"></script>
+    <script src="{{ asset('assets/js/datepicker/date-picker/datepicker.custom.js') }}"></script>
     <!-- Plugins JS Ends-->
-    <script src="{{ asset('adminlte/assets/js/script.js') }}"></script>
+    <script src="{{ asset('assets/js/script.js') }}"></script>
     <!-- Plugin used-->
     <!-- Plugins JS start-->
-    <script src="{{ asset('adminlte/assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('adminlte/assets/js/datatable/datatables/datatable.custom.js') }}"></script>
+    <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
     <!-- Plugins JS Ends-->
 
     <!-- plugins:js -->
