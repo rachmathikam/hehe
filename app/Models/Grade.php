@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mapel extends Model
+class Grade extends Model
 {
     use HasFactory;
-    protected $tabel = 'mapels';
+    protected $tabel = 'grades';
     protected $guarded = [];
 
 
-    public function guru(){
-        return $this->hasOne(Guru::class,);
+    public function siswa(){
+        return $this->hasOne(Siswa::class,);
     }
+
 }

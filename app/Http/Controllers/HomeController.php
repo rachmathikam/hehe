@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Guru;
+use App\Models\Siswa;
+use App\Models\Grade;
+
+
 
 class HomeController extends Controller
 {
@@ -23,6 +28,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $guru = Guru::count();
+        $siswa = Siswa::count();
+        $kelas = Grade::all();
+
+
+        return view('home',compact('guru','siswa','kelas'));
     }
 }

@@ -15,7 +15,7 @@
                 <li class="dropdown">
                     <a class="nav-link menu-title " href="javascript:void(0)"><i data-feather="home"></i><span>Dashboard</span></a>
                     <ul class="nav-submenu menu-content" style="display: none;">
-                        <li><a href="#" class="">Default</a></li>
+                        <li><a href="{{ route('home') }}" class="">Default</a></li>
                         <li><a href="https://laravel.pixelstrap.com/viho/dashboard/dashboard-02" class="">Ecommerce</a></li>
                     </ul>
                 </li>
@@ -26,6 +26,7 @@
                         <li><a href="{{ url('guru') }}" class="">Guru</a></li>
                         <li><a href="{{ route('mapel.index') }}" class="">Mapel</a></li>
                         <li><a href="https://laravel.pixelstrap.com/viho/dashboard/dashboard-02" class="">Siswa</a></li>
+                        <li><a href="{{ url('siswa') }}" class="">Siswa</a></li>
                     </ul>
                 </li>
                 @endif
