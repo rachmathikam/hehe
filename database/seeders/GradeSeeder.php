@@ -14,9 +14,20 @@ class GradeSeeder extends Seeder
      */
     public function run()
     {
-        Grade::create([
-            'kode' => 'C',
-            'name' => 'V-II'
-        ]);
+        Grade::insert([
+            [
+                'kode' => 'C',
+                'name' => 'VII'
+            ],
+
+            [
+                 'kode' => 'D',
+                 'name' => 'VII'
+            ],
+            [
+                'kode' => 'D',
+                'name' => 'VI'
+           ]
+    ]);
     }
 }
