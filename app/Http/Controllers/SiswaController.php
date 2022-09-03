@@ -104,7 +104,8 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Siswa::findOrFail($id);
+        return view('pages.siswa.show',compact('data'));
     }
 
     /**
