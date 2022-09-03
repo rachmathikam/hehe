@@ -24,6 +24,7 @@
                     <a class="nav-link menu-title " href="javascript:void(0)"><i data-feather="users"></i><span>Users</span></a>
                     <ul class="nav-submenu menu-content" style="display: none;">
                         <li><a href="{{ url('guru') }}" class="">Guru</a></li>
+                        <li><a href="{{ route('mapel.index') }}" class="">Mapel</a></li>
                         <li><a href="https://laravel.pixelstrap.com/viho/dashboard/dashboard-02" class="">Siswa</a></li>
                     </ul>
                 </li>

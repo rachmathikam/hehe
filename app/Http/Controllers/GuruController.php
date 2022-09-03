@@ -107,8 +107,8 @@ class GuruController extends Controller
         //     'mapel_id' => $input['mapel_id'],
 
         // ]);
-        DB::beginTransaction();
-        try {
+        // DB::beginTransaction();
+        // try {
             $user = User::create(
                 [
                     'username' => $data['username'],
@@ -117,29 +117,29 @@ class GuruController extends Controller
                     'role_id' => 3,
                 ]
             );
+            $guru = Guru::create([
+                'nip'  => $input['nip'],
+                'name' => $input['name'],
+                'email' => $input['email'],
+                'tempat_lahir' => $input['tempat_lahir'],
+                'tanggal_lahir' => $input['tanggal_lahir'],
+                'gender_id' => $input['gender_id'],
+                'alamat' => $input['alamat'],
+                'no_telp' => $input['no_telp'],
+                'user_id' => $input['user_id'],
+                'mapel_id' => $input['mapel_id'],
+            ]);
 
-            dd($user);
-            $guru = Guru::create(
-                [
-            'nip'  => $input['nip'],
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'tempat_lahir' => $input['tempat_lahir'],
-            'tanggal_lahir' => $input['tanggal_lahir'],
-            'gender_id' => $input['gender_id'],
-            'alamat' => $input['alamat'],
-            'no_telp' => $input['no_telp'],
-            'user_id' => $input['user_id'],
-            'mapel_id' => $input['mapel_id'],
-                ]
-            );
-        DB:commit();
+            if($user){
+                return redirect()->route('guru.index')->with('success', 'Data');
+            }
+        // DB:commit();
 
-        return redirect()->route('guru.index')->with('success', 'Data');
 
-        } catch (\Exceptions $exception) {
-        return redirect()->route('guru.create')->with('failed', 'failed');
-        }
+        // } catch (\Exceptions $exception) {
+
+        //     return redirect()->route('guru.create')->with('error', 'failed');
+        // }
     }
 
     /**
