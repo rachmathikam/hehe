@@ -41,7 +41,7 @@
                                             <td>{{ $siswa->nama }}</td>
                                             <td>
                                             {{-- <a href="{{ route('siswa.show',$data->id) }}"> --}}
-                                                {{ $siswa->grade->name }} - {{$siswa->grade->kode  }}
+                                                {{ $siswa->kelas->name }} - {{$siswa->kelas->kode  }}
                                             {{-- </a> --}}
                                             </td>
                                             <td>{{ $siswa->gender }}</td>

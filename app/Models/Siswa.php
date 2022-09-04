@@ -16,13 +16,8 @@ class Siswa extends Model
         return $this->belongsTo(User::class,);
     }
 
-    public function grade()
-    {
-        return $this->belongsTo(Grade::class, 'grade_id');
-    }
-
     public function kelas()
     {
-        return $this->hasOne(Kelas::class, 'grade_id');
+        return $this->belongsTo(Kelas::class, 'grade_id');
     }
 }

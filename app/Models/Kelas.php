@@ -11,9 +11,10 @@ class Kelas extends Model
 
     protected $table = 'grades';
     protected $guarded = [];
+    protected $with = ['siswa'];
 
     public function siswa()
     {
-        $this->belongsTo(Siswa::class);
+        $this->hasOne(Siswa::class);
     }
 }

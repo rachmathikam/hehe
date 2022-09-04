@@ -7,27 +7,27 @@ use App\Models\Kelas;
 
 class KelasController extends Controller
 {
-   
+
     public function index()
     {
         $data = Kelas::latest()->get();
 
-        return view('pages.kelas.index',compacy('data'));
+        return view('pages.kelas.index',compact('data'));
     }
 
-   
+
     public function create()
     {
         return view('pages.kelas.create');
     }
 
-    
+
     public function store(Request $request)
     {
-        
+
     }
 
-  
+
     public function show($id)
     {
         $data = Kelas::findOrFail($id)->with('siswa');
@@ -37,17 +37,17 @@ class KelasController extends Controller
 
     public function edit($id)
     {
-        
+
     }
 
-   
+
     public function update(Request $request, $id)
     {
-        
+
     }
 
     public function destroy($id)
     {
-        
+
     }
 }
