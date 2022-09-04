@@ -41,7 +41,7 @@
                                     @foreach ($data as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            {{-- <td>{{ $item->kode }}</td> --}}
+                                            <td>{{ $item->kode }}</td>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->siswa->grade_id }}</td>
                                             <td>

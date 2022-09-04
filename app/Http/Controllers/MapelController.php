@@ -27,6 +27,10 @@ class MapelController extends Controller
     {
         $request->validate([
             'name'   => 'required|string|min:5|unique:mapels,name'
+        ],[
+            'name.required' => 'Mata Pelajaran wajib terisi.',
+            'name.unique'   => 'Mata Pelajaran sudah ada.',
+            'name.min'      => 'Mata Pelajaran minimal 5 karakter'
         ]);
 
         $validateData = $request->all();
@@ -59,6 +63,10 @@ class MapelController extends Controller
     {
         $request->validate([
             'name'   => 'required|string|min:5|unique:mapels,name,'.$id
+        ],[
+            'name.required' => 'Mata Pelajaran wajib terisi.',
+            'name.unique'   => 'Mata Pelajaran sudah ada.',
+            'name.min'      => 'Mata Pelajaran minimal 5 karakter'
         ]);
 
         $validateData = $request->all();

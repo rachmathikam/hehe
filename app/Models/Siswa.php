@@ -20,4 +20,9 @@ class Siswa extends Model
     {
         return $this->belongsTo(Grade::class, 'grade_id');
     }
+
+    public function kelas()
+    {
+        return $this->hasOne(Kelas::class, 'grade_id');
+    }
 }

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{LoginController, UserController, GuruController,MapelController, SiswaController, GradeController};
+use App\Http\Controllers\{LoginController, UserController, GuruController,MapelController, SiswaController, KelasController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,7 +28,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('siswa', SiswaController::class,);
     Route::resource('user', UserController::class,);
     Route::resource('mapel', MapelController::class,);
-    Route::resource('kelas', GradeController::class,);
+    Route::resource('kelas', KelasController::class,);
 
 });
 

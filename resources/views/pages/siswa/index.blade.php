@@ -39,7 +39,11 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $siswa->nis }}</td>
                                             <td>{{ $siswa->nama }}</td>
-                                            <td>{{ $siswa->grade->name }} - {{$siswa->grade->kode  }}</td>
+                                            <td>
+                                            {{-- <a href="{{ route('siswa.show',$data->id) }}"> --}}
+                                                {{ $siswa->grade->name }} - {{$siswa->grade->kode  }}
+                                            {{-- </a> --}}
+                                            </td>
                                             <td>{{ $siswa->gender }}</td>
                                             <td>
                                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');"

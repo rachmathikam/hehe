@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Siswa;
-use App\Models\User;
-use App\Models\Grade;
+use App\Models\{Siswa,User,Grade,Kelas};
 use DB;
 class SiswaController extends Controller
 {
@@ -14,11 +12,10 @@ class SiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $kelas = Grade::all();
-        $data = Siswa::with('grade')->get();
-        // dd($data);
+        $data = Siswa::join('grades','grades.id','=','siswas.grade_id')->get();
+
         return view('pages.siswa.index',compact('data'));
     }
 
@@ -29,8 +26,6 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        $kelas = Grade::with('siswa')->get();
-        $data = Siswa::with('user')->get();
         return view('pages.siswa.create',compact('data','kelas'));
     }
 

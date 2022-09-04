@@ -7,7 +7,7 @@
     <div class="page-header">
         <div class="row">
             <div class="col-lg-6">
-                <h3>Tabel Guru</h3>
+                {{-- <h3>Tabel Guru</h3> --}}
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                     <li class="breadcrumb-item">Guru</li>
@@ -17,7 +17,7 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
-                        <h5>Feature Unable /Disable</h5>
+                        <h5>Data Guru</h5>
                         <a class="btn btn-primary btn-sm" href="{{ route('guru.create') }}">Tambah Guru</a>
                     </div>
                         @if ($message = Session::get('success'))

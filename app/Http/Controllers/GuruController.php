@@ -76,27 +76,31 @@ class GuruController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'username' => 'required',
-        //     'email' => 'required',
-        //     'password' => 'required',
-        //     'agama' => 'nullable',
-        //     'nip'  => 'required',
-        //     'nama' => 'required',
-        //     'tempat_lahir' => 'nullable',
-        //     'tanggal_lahir' => 'nullable',
-        //     'gender' => 'required',
-        //     'alamat' => 'nullable',
-        //     'role_id'=>'nullable',
-        //     'no_telp' => 'nullable',
-        //     'mapel_id' =>'nullable',
-        // ]);
+        $request->validate([
+            'username'      => 'required',
+            'email'         => 'required',
+            'password'      => 'required',
+            'agama'         => 'nullable',
+            'nip'           => 'required',
+            'nama'          => 'required',
+            'tempat_lahir'  => 'nullable',
+            'tanggal_lahir' => 'nullable',
+            'gender'        => 'required',
+            'alamat'        => 'nullable',
+            'role_id'       =>'nullable',
+            'no_telp'       => 'nullable',
+            'mapel_id'      =>'required',
+        ],[
+            'username.required'     => 'Username wajib terisi.',
+            'email.required'        => 'Email wajib terisi.',
+            'password.required'     => 'Password wajib terisi.',
+            'nip.required'          => 'Nip wajib terisi.',
+            'tempat_lahir.required' => 'TempatLahir wajib terisi.',
+            'nip.required'          => 'Nip wajib terisi.',
+            'tanggal_lahir.required' => 'TanggalLahir wajib terisi.',
+            'gender.required'       => 'Gender wajib terisi.',
+        ]);
 
-
-        // dd($request);
-        // // $data = $request->validate([
-
-        // ]);
         $input = $request->all();
         // dd($input);
             DB::beginTransaction();
