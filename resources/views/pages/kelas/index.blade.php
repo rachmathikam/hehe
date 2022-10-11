@@ -33,7 +33,7 @@
                                         <th>No</th>
                                         {{-- <th>Kode Kelas</th> --}}
                                         <th>Kelas</th>
-                                        <th>siswa</th>
+                                        <th>Jumlah Siswa</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -41,26 +41,22 @@
                                     @foreach ($data as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->kode }}</td>
-                                            <td>{{ $item->name }}</td>
-                                            <td>{{ $item->siswa->grade_id }}</td>
+                                            <td>{{ $item->romawi->name }} - {{ $item->kode->kode }}</td>
+                                            <td>{{ !is_null($item->siswa) ? $item->siswa->where('kelas_id', $item->id)->count() : '0' }}</td>
                                             <td>
-                                                <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                    action="{{ route('kelas.destroy', $item->id) }}" method="POST">
-                                                    {{-- <a href="{{ route('kelas.show', $item->id) }}">
+
+                                                    <a href="{{ route('kelas.show', $item->id) }}">
                                                         <button class="btn btn-primary" type="button"><i
                                                                 class="mdi mdi-eye"></i></button>
-                                                    </a> --}}
+                                                    </a>
                                                     <a href="{{ route('kelas.edit', $item->id) }}">
                                                         <button class="btn btn-secondary"type="button"><i
                                                                 class="mdi mdi-grease-pencil"></i></button>
                                                     </a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <a href="{{ route('kelas.destroy', $item->id) }}">
-                                                        <button class="btn btn-danger" type="submit"><i
-                                                                class="mdi mdi-delete-forever"></i></button>
-                                                    </a>
+
+                                                    <button class="btn btn-danger" data-name="{{ $item->name }}"
+                                                        data-id="{{ $item->id }}" type="submit"><i
+                                                            class="mdi mdi-delete-forever"></i></button>
                                             </td>
                                             </form>
 
@@ -73,5 +69,73 @@
                 </div>
             </div>
 
+                        {{-- Delete Swwet alert  --}}
+                        <script type="text/javascript">
+                            $(document).ready(function() {
+                                $('.btn-danger').click(function(e) {
+                                    e.preventDefault();
+
+                                    let id = $(this).attr('data-id');
+                                    let name = $(this).attr('data-name');
+
+                                    const swalWithBootstrapButtons = Swal.mixin({
+                                        customClass: {
+                                            confirmButton: 'btn btn-success',
+                                            cancelButton: 'btn btn-danger'
+                                        },
+                                        buttonsStyling: true
+                                    });
+                                    swalWithBootstrapButtons.fire({
+                                        title: 'Hapus?',
+                                        text: "Anda Yakin Hapus ini " + name + "?",
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonText: 'Ya, Hapus ini!',
+                                        cancelButtonText: 'Tidak, Batal!',
+                                        reverseButtons: true
+                                    }).then((result) => {
+                                        if (result.value) {
+                                            if (result.isConfirmed) {
+                                                $.ajax({
+                                                    type: 'POST',
+                                                    url: "kelas/" + id,
+                                                    data: {
+                                                        "_token": "{{ csrf_token() }}",
+                                                        "_method": 'DELETE',
+                                                    },
+                                                    success: function(data) {
+                                                        if (data.success) {
+                                                            Swal.fire({
+                                                                position: 'center',
+                                                                icon: 'success',
+                                                                title: data.message,
+                                                                showConfirmButton: false
+                                                            })
+                                                            setTimeout(() => {
+                                                                location.reload();
+                                                            }, 1500);
+
+                                                        } else {
+                                                            toastr.error(data.message)
+                                                        }
+                                                    },
+                                                    error: function(data) {
+                                                        toastr.error(data)
+                                                    }
+                                                });
+                                            }
+                                        } else if (
+                                            result.dismiss === Swal.DismissReason.cancel
+                                        ) {
+                                            swal.fire(
+                                                'Batal',
+                                                'Data Tidak di delete',
+                                                'error'
+                                            )
+                                        }
+                                    });
+                                });
+                            });
+                        </script>
 
         @endsection

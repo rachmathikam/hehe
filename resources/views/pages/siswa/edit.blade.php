@@ -28,6 +28,21 @@
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
+                                <label class="pb-3 mb-0">Username</label>
+                                <input class="form-control" type="text" value="{{ $data->user->username }}" name="username"
+                                    placeholder="your Username">
+                            </div>
+                            <div class="mb-3">
+                                <label class="pb-3 mb-0">Password</label>
+                                <input class="form-control" type="password" value="{{ $data->user->password }}" name="password"
+                                    placeholder="your password">
+                            </div>
+                            <div class="mb-3">
+                                <label class="pb-3 mb-0">Email</label>
+                                <input class="form-control" type="text" value="{{ $data->user->email }}" name="email"
+                                    placeholder="your Email">
+                            </div>
+                            <div class="mb-3">
                                 <label class="pb-3 mb-0">NIS</label>
                                 <input class="form-control" type="text" value="{{ $data->nis }}" name="nis"
                                     placeholder="your NIS">
@@ -67,20 +82,20 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="grade" class="form-label">Kelas</label>
-                                    <select name="grade_id" id="grade" class="form-control @error('grade_id') is-invalid @enderror">
+                                    <select name="romawi_id" id="grade" class="form-control @error('kelas_id') is-invalid @enderror">
                                     <option value="">-- Pilih kelas --</option>
-                                        @foreach ($kelas as $kelass)
-                                            <option value="{{ $kelass->id }}" @selected($kelass->id == $data->grade_id)>{{ $kelass->name }}</option>
+                                        @foreach ($romawi as $romawis)
+                                            <option value="{{ $romawis->id }}" @selected($romawis->id == $data->kelas->romawi_id)>{{ $romawis->name }}</option>
                                         @endforeach
                                     </select>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="grade" class="form-label">kode</label>
-                                    <select name="grade_id" id="grade" class="form-control @error('grade_id') is-invalid @enderror">
+                                    <select name="kode_id" id="grade" class="form-control @error('kode') is-invalid @enderror">
                                     <option value="">-- Pilih kode kelas --</option>
-                                        @foreach ($kelas as $kelass)
-                                            <option value="{{ $kelass->id }}" @selected($kelass->id == $data->grade_id)>{{ $kelass->kode }}</option>
+                                        @foreach ($kode as $kodes)
+                                            <option value="{{ $kodes->id }}" @selected($kodes->id == $data->kelas->kode_id)>{{ $kodes->kode }}</option>
                                         @endforeach
                                     </select>
                                     </select>

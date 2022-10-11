@@ -38,16 +38,14 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $siswa->nis }}</td>
-                                            <td>{{ $siswa->nama }}</td>
+                                            <td><a href="{{ route('siswa.show',$siswa->id)}}">{{ $siswa->nama }}</a></td>
                                             <td>
                                             {{-- <a href="{{ route('siswa.show',$data->id) }}"> --}}
-                                                {{ $siswa->kelas->name }} - {{$siswa->kelas->kode  }}
+                                                {{ $siswa->kelas->romawi->name }} - {{$siswa->kelas->kode->kode  }}
                                             {{-- </a> --}}
                                             </td>
                                             <td>{{ $siswa->gender }}</td>
                                             <td>
-                                                <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                    action="{{ route('siswa.destroy', $siswa->id) }}" method="POST">
                                                     <a href="{{ route('siswa.show', $siswa->id) }}">
                                                         <button class="btn btn-primary" type="button"><i
                                                                 class="mdi mdi-eye"></i></button>
@@ -56,14 +54,10 @@
                                                         <button class="btn btn-secondary"type="button"><i
                                                                 class="mdi mdi-grease-pencil"></i></button>
                                                     </a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <a href="{{ route('siswa.destroy', $siswa->id) }}">
-                                                        <button class="btn btn-danger" type="submit"><i
-                                                                class="mdi mdi-delete-forever"></i></button>
-                                                    </a>
+                                                    <button class="btn btn-danger" data-name="{{ $siswa->nama }}"
+                                                        data-id="{{ $siswa->id }}" type="submit"><i
+                                                            class="mdi mdi-delete-forever"></i></button>
                                             </td>
-                                            </form>
 
                                         </tr>
                                     @endforeach
@@ -74,83 +68,72 @@
                 </div>
             </div>
 
-            {{-- <script>
-    $(document).ready(function() {
-            $('.table-guru').DataTable({
-                processing: true,
-                serverside: true,
-                ajax: {
-                    url: "{{route('guru.index')}}",
-                    type: 'GET'
-                },
-                responsive: true,
-                columns: [{
-                        data: 'DT_RowIndex',
-                    },
-                    {
-                        data: 'nip',
-                    },
-                    {
-                        data: 'nama',
-                    },
-                    {
-                        data: 'mapel'
-                    },
-                    {
-                        data: 'action',
-                    },
-                ]
-            });
-        });
+                   {{-- Delete Swwet alert  --}}
+                   <script type="text/javascript">
+                    $(document).ready(function() {
+                        $('.btn-danger').click(function(e) {
+                            e.preventDefault();
 
-    function deleteItem(e) {
-            let id = e.getAttribute('data-id');
-            let name = e.getAttribute('data-name');
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-success',
-                    cancelButton: 'btn btn-danger'
-                },
-                buttonsStyling: true
-            });
-            swalWithBootstrapButtons.fire({
-                title: 'Yakin menghapus '+name+" ?",
-                text: name+" akan di hapus",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Ya,Hapus',
-                cancelButtonText: 'Tidak, Batal!',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.value) {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            type: 'POST',
-                            url: "guru" + id,
-                            data: {
-                                "_token": "{{ csrf_token() }}",
-                                "_method": 'DELETE',
-                            },
-                            success: function(response) {
-                                if (response.success) {
-                                    toastr.success(name + response.message);
-                                    var oTable = $('.table-guru').DataTable(); //inialisasi datatable
-                                    oTable.ajax.reload();
+                            let id = $(this).attr('data-id');
+                            let name = $(this).attr('data-name');
+
+                            const swalWithBootstrapButtons = Swal.mixin({
+                                customClass: {
+                                    confirmButton: 'btn btn-success',
+                                    cancelButton: 'btn btn-danger'
+                                },
+                                buttonsStyling: true
+                            });
+                            swalWithBootstrapButtons.fire({
+                                title: 'Hapus?',
+                                text: "Anda Yakin Hapus ini " + name + "?",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonText: 'Ya, Hapus ini!',
+                                cancelButtonText: 'Tidak, Batal!',
+                                reverseButtons: true
+                            }).then((result) => {
+                                if (result.value) {
+                                    if (result.isConfirmed) {
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: "siswa/" + id,
+                                            data: {
+                                                "_token": "{{ csrf_token() }}",
+                                                "_method": 'DELETE',
+                                            },
+                                            success: function(data) {
+                                                if (data.success) {
+                                                    Swal.fire({
+                                                        position: 'center',
+                                                        icon: 'success',
+                                                        title: data.message,
+                                                        showConfirmButton: false
+                                                    })
+                                                    setTimeout(() => {
+                                                        location.reload();
+                                                    }, 1500);
+
+                                                } else {
+                                                    toastr.error(data.message)
+                                                }
+                                            },
+                                            error: function(data) {
+                                                toastr.error(data)
+                                            }
+                                        });
+                                    }
+                                } else if (
+                                    result.dismiss === Swal.DismissReason.cancel
+                                ) {
+                                    swal.fire(
+                                        'Batal',
+                                        'Data Tidak di delete',
+                                        'error'
+                                    )
                                 }
-                            }
-
+                            });
                         });
-                    }
-                } else if (
-                    result.dismiss === Swal.DismissReason.cancel
-                ) {
-                    swal.fire(
-                        'Batal',
-                        'Data '+name+' tidak dihapus',
-                        'error'
-                    )
-                }
-            });
-        }
-</script> --}}
+                    });
+                </script>
         @endsection

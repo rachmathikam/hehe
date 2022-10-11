@@ -78,17 +78,27 @@ class MapelController extends Controller
         } else {
             return redirect()->route('mapel.index')->with('error','Data gagal diupdate');
         }
+        // dd($data);
     }
-
 
     public function destroy($id)
     {
         $data = Mapel::FindOrFail($id);
 
         if($data->guru()->count()){
-            return back()->with('error', 'Mapel ini masih terkait dengan data guru!');
+            return response()->json([
+                'error' => false,
+                'message' => 'Mapel Terkait dengan Guru silahkan edit',
+        ]);
         }
-        $data->delete();
-        return back()->with('success','Data berhasil dihapus');
+        $data_del = $data->delete($data);
+
+        if ($data_del) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Data berhasil di hapus',
+            ]);
+        }
+
     }
 }

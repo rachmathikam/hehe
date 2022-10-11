@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Guru;
 use App\Models\Siswa;
-use App\Models\Grade;
+use App\Models\Kelas;
 
 
 
@@ -30,9 +30,11 @@ class HomeController extends Controller
     {
         $guru = Guru::count();
         $siswa = Siswa::count();
-        $kelas = Grade::all();
+        $kelas = Kelas::count();
+
+        // $kelas = Kelas::all();
 
 
-        return view('home',compact('guru','siswa','kelas'));
+        return view('home',compact('guru','siswa', 'kelas'));
     }
 }

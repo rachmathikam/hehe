@@ -20,16 +20,17 @@
                         <h5>Data Mata Pelajaran</h5>
                         <a class="btn btn-primary btn-sm" href="{{ route('mapel.create') }}">Tambah Mapel</a>
                     </div>
-                         @if ($message = Session::get('success'))
-                            <div class="alert alert-primary dark alert-dismissible fade show float-right" width="20% !important">
-                                <p>{{ $message }}</p>
-                            </div>
-                        @endif
-                         @if ($message = Session::get('error'))
-                            <div class="alert alert-danger dark alert-dismissible fade show float-right" width="20%">
-                                <p>{{ $message }}</p>
-                            </div>
-                        @endif
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-primary dark alert-dismissible fade show float-right"
+                            width="20% !important">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
+                    @if ($message = Session::get('error'))
+                        <div class="alert alert-danger dark alert-dismissible fade show float-right" width="20%">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="display" id="basic-2">
@@ -46,24 +47,15 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->name }}</td>
                                             <td>
-                                                <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                    action="{{ route('mapel.destroy', $item->id) }}" method="POST">
-                                                    {{-- <a href="{{ route('mapel.show', $item->id) }}">
-                                                        <button class="btn btn-primary" type="button"><i
-                                                                class="mdi mdi-eye"></i></button>
-                                                    </a> --}}
-                                                    <a href="{{ route('mapel.edit', $item->id) }}">
-                                                        <button class="btn btn-secondary"type="button"><i
-                                                                class="mdi mdi-grease-pencil"></i></button>
-                                                    </a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <a href="{{ route('mapel.destroy', $item->id) }}">
-                                                        <button class="btn btn-danger" type="submit"><i
-                                                                class="mdi mdi-delete-forever"></i></button>
-                                                    </a>
+
+                                                <a href="{{ route('mapel.edit', $item->id) }}">
+                                                    <button class="btn btn-secondary"type="button"><i
+                                                            class="mdi mdi-grease-pencil"></i></button>
+                                                </a>
+                                                <button class="btn btn-danger" data-name="{{ $item->name }}"
+                                                    data-id="{{ $item->id }}" type="submit"><i
+                                                        class="mdi mdi-delete-forever"></i></button>
                                             </td>
-                                            </form>
 
                                         </tr>
                                     @endforeach
@@ -74,5 +66,72 @@
                 </div>
             </div>
 
+            {{-- Delete Swwet alert  --}}
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('.btn-danger').click(function(e) {
+                        e.preventDefault();
 
+                        let id = $(this).attr('data-id');
+                        let name = $(this).attr('data-name');
+
+                        const swalWithBootstrapButtons = Swal.mixin({
+                            customClass: {
+                                confirmButton: 'btn btn-success',
+                                cancelButton: 'btn btn-danger'
+                            },
+                            buttonsStyling: true
+                        });
+                        swalWithBootstrapButtons.fire({
+                            title: 'Hapus?',
+                            text: "Anda Yakin Hapus ini " + name + "?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Ya, Hapus ini!',
+                            cancelButtonText: 'Tidak, Batal!',
+                            reverseButtons: true
+                        }).then((result) => {
+                            if (result.value) {
+                                if (result.isConfirmed) {
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: "mapel/" + id,
+                                        data: {
+                                            "_token": "{{ csrf_token() }}",
+                                            "_method": 'DELETE',
+                                        },
+                                        success: function(data) {
+                                            if (data.success) {
+                                                Swal.fire({
+                                                    position: 'center',
+                                                    icon: 'success',
+                                                    title: data.message,
+                                                    showConfirmButton: false
+                                                })
+                                                setTimeout(() => {
+                                                    location.reload();
+                                                }, 1500);
+
+                                            } else {
+                                                toastr.error(data.message)
+                                            }
+                                        },
+                                        error: function(data) {
+                                            toastr.error(data)
+                                        }
+                                    });
+                                }
+                            } else if (
+                                result.dismiss === Swal.DismissReason.cancel
+                            ) {
+                                swal.fire(
+                                    'Batal',
+                                    'Data Tidak di delete',
+                                    'error'
+                                )
+                            }
+                        });
+                    });
+                });
+            </script>
         @endsection

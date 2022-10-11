@@ -47,6 +47,22 @@ class CreateUserSeeder extends Seeder
                 'image' => 'storage/image/hero.jpg',
                 'role_id' => '4'
             ],
+
+            [
+                'username' => 'Sultan Arya',
+                'email' => 'arya@gmail.com',
+                'password' => bcrypt('arya123'),
+                'image' => 'storage/image/hero.jpg',
+                'role_id' => '4'
+            ],
+
+            [
+                'username' => 'Navisa Oktavia',
+                'email' => 'navisa@gmail.com',
+                'password' => bcrypt('navisa123'),
+                'image' => 'storage/image/hero.jpg',
+                'role_id' => '4'
+            ],
         ]);
     }
 }

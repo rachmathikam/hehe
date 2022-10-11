@@ -1,10 +1,10 @@
 
 <div class="main-header-right row m-0">
     <div class="main-header-left">
-      <div class="logo-wrapper"><a href="#"><img class="img-fluid" src="{{ asset('adminlte/assets/images/logo/logo-1.png') }}"</a></div>
+      <div class="logo-wrapper"><a href="{{ route('home') }}"><img class="img-fluid" src="{{ asset('assets/images/logo/logo-dark.png') }}"</a></div>
 
-      <div class="dark-logo-wrapper"><a href="#"><img class="img-fluid" src="{{ asset('adminlte/assets/images/logo/logo-1_Dar.png') }}"  alt=""></a></div>
-      <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="align-center" id="sidebar-toggle">    </i></div>
+      <div class="dark-logo-wrapper"><a href="#"><img class="img-fluid" src="{{ asset('assets/images/logo/logo.png') }}"  alt=""></a></div>
+      <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="align-center" id="sidebar-toggle"></i></div>
     </div>
     <div class="left-menu-header col">
     </div>

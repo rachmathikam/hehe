@@ -72,7 +72,7 @@
                                 <div class="col-md-6">
                                     <label for="mapel" class="form-label">Mengajar</label>
                                     <select name="mapel_id" id="mapel" class="form-control @error('mapel_id') is-invalid @enderror">
-                                    <option value="">-- Pilih Role --</option>
+                                    <option value="">-- Pilih Mata Pelajaran --</option>
                                         @foreach ($mapel as $mapels)
                                             <option value="{{ $mapels->id }}" @selected($mapels->id == $data->mapel_id)>{{ $mapels->name }}</option>
                                         @endforeach
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-primary" type="submit">Submit</button>
+                        <button class="btn btn-primary" id="tambah" type="submit">Submit</button>
                         <a  href="{{ route('guru.index') }}" class="btn btn-secondary" >Cancel</a>
                     </div>
                 </form>

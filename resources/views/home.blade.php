@@ -48,7 +48,6 @@
         </div>
         </div>
         </div>
-
         <div class="row">
             <div class="col-sm-6 col-xl-3 col-lg-6">
                 <div class="card o-hidden border-0">
@@ -62,6 +61,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
             <div class="col-sm-6 col-xl-3 col-lg-6">
@@ -71,7 +71,7 @@
                             <div class="align-self-center text-center"><i data-feather="home"></i></div>
                             <div class="media-body">
                                 <span class="m-0">Kelas</span>
-                                <h4 class="mb-0 counter">{{ $kelas->count() }}</h4>
+                                <h4 class="mb-0 counter">{{ $kelas }}</h4>
                                 <i class="icon-bg" data-feather="home"></i>
                             </div>
                         </div>

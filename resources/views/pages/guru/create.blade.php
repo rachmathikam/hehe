@@ -143,7 +143,7 @@
                                     </div>
                             </div>
                             <div class="card-footer">
-                                <button class="btn btn-primary" type="submit">Submit</button>
+                                <button class="btn btn-primary" id="tambah" type="submit">Submit</button>
                                 <button class="btn btn-secondary">Cancel</button>
                             </div>
                             </form>

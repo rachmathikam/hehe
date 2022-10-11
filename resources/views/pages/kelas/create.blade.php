@@ -26,14 +26,19 @@
                  <form class="theme-form mega-form" action="{{ route('kelas.store') }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
-                            <div class="row">
-                                <div class="col-lg-12 col-sm-12">
-                                    <label for="">Kode Kelas</label>
-                                    <input type="text" class="form-control" name="kode" value="{{ old('kode') }}">
-                                </div>
+                            <div class="col-md-6">
+                                <label for="kode" class="form-label">Kode Kelas</label>
+                                <select name="kode_id" id="kode" class="form-control @error('kode_id') is-invalid @enderror">
+                                <option value="">-- Pilih Kode --</option>
+                                    @foreach ($kodes as $kode)
+                                        <option value="{{ $kode->id }}" @selected($kode->id)>{{ $kode->kode }}</option>
+                                    @endforeach
+                                </select>
+                                </select>
+                            </div>
                                 <div class="col-lg-12 col-sm-12">
                                     <label for="">Inisial Kelas</label>
-                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="B">
+                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="I II III IV V">
                                 </div>
                             </div>
                     <div class="card-footer">

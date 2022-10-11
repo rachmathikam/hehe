@@ -9,11 +9,11 @@
 <meta name="keywords"
     content="admin template, viho admin template, dashboard template, flat admin template, responsive admin template, web app">
 <meta name="author" content="pixelstrap">
-<link rel="icon" href="{{ asset('adminlte/assets/images/logo/logo.png') }}" type="image/x-icon">
+<link rel="icon" href="{{ asset('frontend/app/image/101.png') }}" type="image/x-icon">
 <link rel="shortcut icon" href="{{ asset('adminlte/assets/images/logo/logo.png') }}" type="image/x-icon">
 <title>SMP Lukman Al-Hakim
 </title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+<link rel=" stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
     integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css">
@@ -30,7 +30,8 @@
     rel="stylesheet">
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+{{-- <script src="https://laravel.pixelstrap.com/viho/assets/js/sweet-alert/sweetalert.min.js"></script> --}}
 
 
 <!-- Font Awesome-->
@@ -61,6 +62,7 @@
 </head>
 
 <body>
+    {{-- @include('sweetalert::alert') --}}
     <!-- Loader starts-->
     <!-- Loader ends-->
     <!-- page-wrapper Start-->
@@ -95,8 +97,9 @@
     @include('layouts.footer')
     </div>
     </div>
+    @yield('script')
     <!-- latest jquery-->
-    <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script> --}}
     <!-- feather icon js-->
     <script src="{{ asset('assets/js/icons/feather-icon/feather.min.js') }}"></script>
     <script src="{{ asset('assets/js/icons/feather-icon/feather-icon.js') }}"></script>
@@ -144,5 +147,26 @@
             return cookie[name];
         }
 </script> --}}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        const error = '{{ session('error') }}';
+        if (error) {
+
+            sessionStorage.clear();
+        }
+        const success = '{{ session('success') }}';
+        if (success) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: success,
+                showConfirmButton: false,
+                timer: 1500
+            })
+            sessionStorage.clear();
+        }
+    });
+</script>
 
 </html>

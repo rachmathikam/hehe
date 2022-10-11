@@ -10,7 +10,7 @@
         content="admin template, viho admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="{{('adminlte/assets/images/logo/logo.png')}}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{asset('adminlte/assets/images/logo/logo.png')}}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('frontend/app/image/101.png') }}" type="image/x-icon" sizes="16x16">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -62,7 +62,7 @@
                             @csrf
 
                             <div class="logo-login" style="text-align: center">
-                                <img src="{{asset('assets/images/logo/logo.png')}}"  alt="" width="150">
+                                <img src="{{asset('assets/images/logo/logo-1.png')}}"  alt="" width="150">
                             </div>
                             <h4 class="text-center" style="margin-bottom: 20px;">Login</h4>
                             <h6>Welcome back! Log in to your account.</h6>

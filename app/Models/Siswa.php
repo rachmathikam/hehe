@@ -10,14 +10,20 @@ class Siswa extends Model
     use HasFactory;
     protected $tabel = 'siswas';
     protected $guarded = [];
+    // protected $with = ['kelas'];
 
     public function user()
     {
-        return $this->belongsTo(User::class,);
+        return $this->belongsTo(User::class);
     }
 
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class, 'grade_id');
+        return $this->belongsTo(Kelas::class);
+    }
+
+    public function nilai()
+    {
+        return $this->BelongsTo(Nilai::class);
     }
 }

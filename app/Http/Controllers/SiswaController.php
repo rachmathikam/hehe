@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Siswa,User,Grade,Kelas};
+use App\Models\{Siswa,User,Kelas,Kode,Romawi};
 use DB;
+use Hash;
 class SiswaController extends Controller
 {
     /**
@@ -14,8 +15,9 @@ class SiswaController extends Controller
      */
     public function index(Request $request)
     {
-        $data = Siswa::join('grades','grades.id','=','siswas.grade_id')->get();
-
+        // $data = Siswa::join('kelass','kelass.id','=','siswas.kelas_id')->get();`
+        $data = Siswa::all();
+        // dd($data);
         return view('pages.siswa.index',compact('data'));
     }
 
@@ -26,7 +28,10 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return view('pages.siswa.create',compact('data','kelas'));
+        $data = Siswa::all();
+        $kode = Kode::all();
+        $romawi = Romawi::all();
+        return view('pages.siswa.create',compact('data','romawi','kode'));
     }
 
     /**
@@ -37,22 +42,24 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     // 'user_id'=> 'required',
-        //     'grade_id'=> 'nullable',
-        //     'nis' => 'required|unique:siswas|max:5',
-        //     'username' => 'required',
-        //     'password' => 'required',
-        //     'email' => 'required|unique:users',
-        //     'nama' => 'required',
-        //     'tempat_lahir' => 'required',
-        //     'tanggal_lahir' => 'required',
-        //     'gender' => 'required',
-        //     'agama' => 'required',
-        //     'alamat' => 'required',
-        //     'role_id' => 'nullable',
-        // ]);
-        // dd($request);
+        $request->validate([
+            // 'user_id'=> 'required',
+            // 'nis' => 'required|unique:siswas|max:5',
+            'username' => 'required',
+            'password' => 'required',
+            'email' => 'required|unique:users',
+            'nama' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'gender' => 'required',
+            'agama' => 'required',
+            'alamat' => 'required',
+            'kode_id' => 'required',
+            'romawi_id' => 'required',
+
+            // 'role_id' => 'nullable',
+        ]);
+        // dd($request->toArray());
 
         $input = $request->all();
 
@@ -66,6 +73,9 @@ class SiswaController extends Controller
 
             ]);
 
+            $kelas = Kelas::where('romawi_id', $input['romawi_id'])
+                        ->where('kode_id', $input['kode_id'])->first();
+
             $userid = User::get()->last();
 
             Siswa::create([
@@ -77,8 +87,12 @@ class SiswaController extends Controller
                 'agama' => $input['agama'],
                 'alamat' => $input['alamat'],
                 'user_id' => $userid->id,
-                'grade_id' => $input['grade_id'],
-        ]);
+                'kelas_id' => $kelas->id,
+
+                // 'kode' => $input['kode'],
+            ]);
+            // dd($input['kode']);
+
 
         DB::commit();
         return redirect()->route('siswa.index')->with('success', 'Success Insert Data Siswa');
@@ -86,7 +100,7 @@ class SiswaController extends Controller
         } catch (\Exeptions $exeption) {
            DB::rollback();
 
-           return redirect()->route('siswa.create       TABLE')->with('Failed', 'Failed Insert Data Siswa');
+           return redirect()->route('siswa.create')->with('Failed', 'Failed Insert Data Siswa');
         }
 
     }
@@ -111,12 +125,14 @@ class SiswaController extends Controller
      */
     public function edit($id)
     {
-        $kelas = Grade::with('siswa')->get();
-        // dd($mapel);
+        $romawi = Romawi::all();
+        $kode = Kode::all();
+        // dd($kelas);
 
         $data = Siswa::findOrFail($id);
         // dd($data);
-        return view('pages.siswa.edit',compact('data','kelas'));
+        // dd($data);
+        return view('pages.siswa.edit',compact('data','romawi','kode'));
     }
 
     /**
@@ -128,24 +144,54 @@ class SiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        // dd($siswa);
+        // dd($request->all());
+         $request->validate([
             'nama'=> 'required',
             'nis' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' =>'required',
             'agama' => 'required',
             'gender' =>'required',
-            'grade_id' => 'required',
             'alamat' => 'required',
-
+            'romawi_id' => 'required',
+            'kode_id' => 'required',
+            'email'=>'required',
+            'password'=>'nullable',
+            'username' => 'required',
         ]);
+        // dd($request->all());
 
         $input = $request->all();
-        // dd($input);
-        $data = Siswa::findOrFail($id);
-        $data->update($input);
+        $input['password'] = Hash::make($request->password);
 
-        return redirect()->route('siswa.index')->with('success', 'Data');
+        $kelas = Kelas::where('romawi_id', $input['romawi_id'])
+                        ->where('kode_id', $input['kode_id'])->first();
+
+        $data = Siswa::findOrFail($id);
+
+        $user = User::findOrFail($data->user_id);
+
+        $user->update([
+            'username' => $input['username'],
+            'password'   => $input['password'],
+            'email' => $input['email'],
+        ]);
+
+        $data->update(
+            [
+            'nis' => $input['nis'],
+            'nama' => $input['nama'],
+            'tempat_lahir' => $input['tempat_lahir'],
+            'tanggal_lahir' => $input['tanggal_lahir'],
+            'gender' => $input['gender'],
+            'agama' => $input['agama'],
+            'alamat' => $input['alamat'],
+            'kelas_id' => $kelas->id
+            ]
+        );
+        // dd($data->toArray());
+        return redirect()->route('siswa.index')->with('success', 'Siswa Berhasil di Update');
     }
 
     /**
@@ -156,14 +202,17 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        $data = Siswa::find($id);
-        $siswa = User::where('id',$data['user_id'])->first();
+        // $data = Siswa::find($id);
+        // $siswa = User::where('id',$data['user_id'])->first();
+        // dd($siswa);
+        $data = Siswa::find($id)->user();
+        $data_del = $data->delete();
+        if ($data_del) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Data berhasil di hapus',
+            ]);
+        }
 
-        if($siswa->delete()){
-            return redirect()->route('siswa.index')->with(['success' => 'Data Berhasil Dihapus!']);
-         }else{
-           //redirect dengan pesan error
-           return redirect()->route('siswa.index')->with(['error' => 'Data Gagal Dihapus!']);
-         }
     }
 }

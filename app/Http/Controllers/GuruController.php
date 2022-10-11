@@ -98,7 +98,9 @@ class GuruController extends Controller
             'tempat_lahir.required' => 'TempatLahir wajib terisi.',
             'nip.required'          => 'Nip wajib terisi.',
             'tanggal_lahir.required' => 'TanggalLahir wajib terisi.',
-            'gender.required'       => 'Gender wajib terisi.',
+            'gender.required'       => 'Jenis Kelamin wajib terisi.',
+            'nama.required'         => 'Nama wajib terisi.',
+
         ]);
 
         $input = $request->all();
@@ -123,7 +125,7 @@ class GuruController extends Controller
                         'agama' => $input['agama'],
                         'tempat_lahir' => $input['tempat_lahir'],
                         'tanggal_lahir' => $input['tanggal_lahir'],
-                        'gender' => $input['jenis_kelamin'],
+                        'gender' => $input['gender'],
                         'alamat' => $input['alamat'],
                         'no_telp' => $input['no_telp'],
                         'user_id' => $userid->id,
@@ -198,7 +200,7 @@ class GuruController extends Controller
                 $data = Guru::findOrFail($id);
                 $data->update($input);
 
-                return redirect()->route('guru.index')->with('success', 'Data');
+                return redirect()->route('guru.index')->with('success', 'Data berhasil Perbaharui');
     }
 
     /**
@@ -209,15 +211,16 @@ class GuruController extends Controller
      */
     public function destroy($id)
     {
-        $data = Guru::find($id)->user->delete();
+        $data = Guru::find($id)->user();
+        $data_del = $data->delete($data);
         // $data->user->delete()
         // $guru = User::where('id',$data['user_id'])->first();
 
-        if($data){
-            return redirect()->route('guru.index')->with(['success' => 'Data Berhasil Dihapus!']);
-         }else{
-           //redirect dengan pesan error
-           return redirect()->route('guru.index')->with(['error' => 'Data Gagal Dihapus!']);
-         }
+        if ($data_del) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Data berhasil di hapus',
+            ]);
+        }
     }
 }
