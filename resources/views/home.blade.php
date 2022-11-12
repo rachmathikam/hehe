@@ -49,22 +49,7 @@
         </div>
         </div>
         <div class="row">
-            <div class="col-sm-6 col-xl-3 col-lg-6">
-                <div class="card o-hidden border-0">
-                    <div class="bg-primary b-r-4 card-body">
-                        <div class="media static-top-widget">
-                            <div class="align-self-center text-center"><i data-feather="user"></i></div>
-                            <div class="media-body">
-                                <span class="m-0">Guru</span>
-                                <h4 class="mb-0 counter">{{$guru}}</h4>
-                                <i class="icon-bg" data-feather="user"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-3 col-lg-6">
+            <div class="col-sm-6 col-xl-4 col-lg-6">
                 <div class="card o-hidden border-0">
                     <div class="bg-secondary b-r-4 card-body">
                         <div class="media static-top-widget">
@@ -78,21 +63,21 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-xl-3 col-lg-6">
+            <div class="col-sm-6 col-xl-4 col-lg-6">
                 <div class="card o-hidden border-0">
                     <div class="bg-primary b-r-4 card-body">
                         <div class="media static-top-widget">
                             <div class="align-self-center text-center"><i data-feather="file-text"></i></div>
                             <div class="media-body">
-                                <span class="m-0">Raport</span>
-                                <h4 class="mb-0 counter">893</h4>
+                                <span class="m-0">Mata Pelajaran</span>
+                                <h4 class="mb-0 counter">0</h4>
                                 <i class="icon-bg" data-feather="file-text"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-xl-3 col-lg-6">
+            <div class="col-sm-6 col-xl-4 col-lg-6">
                 <div class="card o-hidden border-0">
                     <div class="bg-primary b-r-4 card-body">
                         <div class="media static-top-widget">

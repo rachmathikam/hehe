@@ -27,4 +27,8 @@ class Kelas extends Model
     {
         return $this->belongsTo(Romawi::class,'romawi_id');
     }
+
+    public function guru(){
+
+    }
 }

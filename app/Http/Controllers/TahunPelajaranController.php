@@ -45,13 +45,17 @@ class TahunPelajaranController extends Controller
 
         // dd($request);
         $data = $request->all();
+        $check = TahunPelajaran::where('tahun',$data['tahun'])->where('semester',$data['semester'])->count();
+        if($check > 0){
+            return redirect()->route('thpelajaran.create')->with('error','Data tahun pelajaran '.$data['tahun'].'/'.$data['semester'].' sudah ada');
+        }
         $data = TahunPelajaran::create($data);
         // dd($data);
 
         if($data){
             return redirect()->route('thpelajaran.index')->with('success','Data berhasil di tambahkan');
         }else{
-            return redirect()->route('thpelajaran.create')->with('success','Data gagal di tambahkan');
+            return redirect()->route('thpelajaran.create')->with('error','Data gagal di tambahkan');
         }
 
     }

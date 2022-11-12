@@ -21,8 +21,6 @@ class DatabaseSeeder extends Seeder
             TahunPelajaranSeeder::class,
             GuruSeeder::class,
             JadwalSeeder::class,
-            KodeKelasSeeder::class,
-            RomawiSeeder::class,
             KelasSeeder::class,
             SiswaSeeder::class,
             KategoriBeritaSeeder::class,

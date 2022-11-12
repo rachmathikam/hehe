@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('image');
-            $table->enum('status',['0','1']);
+            $table->boolean('status')->default(0);
+            $table->boolean('trending')->default(0);
             $table->timestamps();
         });
     }

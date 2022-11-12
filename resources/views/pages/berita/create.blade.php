@@ -41,6 +41,7 @@
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
+
                                     <div class="mb-3">
                                         <label class="form-label" for="validationCustom04">Kategori Berita</label>
                                         <select class="form-select" id="validationCustom04" required=""
@@ -56,6 +57,27 @@
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                    {{-- <div class="row">
+                                        <div class="col">
+                                            <label class="pb-3 mb-0">Status</label>
+                                            <div class="media-body">
+                                                <label class="switch">
+                                                    <input type="checkbox" checked="chacked" data-id="{{$berita}}"class="toggle-class" type="checkbox"
+                                                    data-off="InActive" data-toggle="toggle">
+                                                    <span class="switch-state" value="" name="status"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <label class="pb-3 mb-0">Trending</label>
+                                            <div class="media-body">
+                                                <label class="switch">
+                                                  <input type="checkbox" checked="chacked"><span class="switch-state" value=""></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div> --}}
+
                                     <div class="mb-3">
                                         <label class="pb-3 mb-0">Gambar</label>
                                         <input class="form-control" type="file" name="image" placeholder="image"
@@ -64,9 +86,10 @@
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
+
                                     <div class="card-footer">
                                         <button class="btn btn-primary" type="submit">Submit</button>
-                                        <button class="btn btn-secondary">Cancel</button>
+                                        <a href="{{ route('berita.index') }}" class="btn btn-secondary">Cancel</a>
                                     </div>
                                 </form>
                             </div>
@@ -74,4 +97,23 @@
                     </div>
                 </div>
             </div>
+
+            <script>
+                $(function() {
+                  $('.toggle-class').change(function() {
+                      var status = $(this).prop('checked') == true ? 1 : 0;
+                      var berita = $(this).data('id');
+
+                      $.ajax({
+                          type: "GET",
+                          dataType: "json",
+                          url: '/berita',
+                          data: {'status': status, 'berita': status},
+                          success: function(data){
+                            console.log(data.success)
+                          }
+                      });
+                  })
+                })
+              </script>
         @endsection

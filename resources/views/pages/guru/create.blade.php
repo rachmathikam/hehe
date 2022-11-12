@@ -144,7 +144,7 @@
                             </div>
                             <div class="card-footer">
                                 <button class="btn btn-primary" id="tambah" type="submit">Submit</button>
-                                <button class="btn btn-secondary">Cancel</button>
+                                <a href="{{ route('guru.index') }}" class="btn btn-secondary">Cancel</a>
                             </div>
                             </form>
                         </div>

@@ -15,17 +15,22 @@ class TahunPelajaranSeeder extends Seeder
      */
     public function run()
     {
-      $tahun_pelajaran =  TahunPelajaran::insert([
 
-            [
-                'tahun' =>  '2013',
-                'semester' => 'ganjil'
-            ],
-            [
-                'tahun' =>  '2013',
-                'semester' => 'genap'
-            ],
 
-        ]);
+           $data = [
+                '2016',
+                '2017',
+                '2018',
+                '2019',
+                '2020',
+                '2021',
+                '2022',
+           ];
+
+           foreach ($data as $datas) {
+                TahunPelajaran::create([
+                    'tahun_akademik' => $datas
+                ]);
+           }
     }
 }

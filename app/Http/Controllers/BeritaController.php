@@ -28,8 +28,9 @@ class BeritaController extends Controller
     public function create()
     {
         $kategori = KategoriBerita::all();
+        $berita = Berita::all();
         // dd($kategori);
-        return view('pages.berita.create',compact('kategori'));
+        return view('pages.berita.create',compact('kategori','berita'));
     }
 
     /**
@@ -45,10 +46,16 @@ class BeritaController extends Controller
             'kategori_berita_id' => 'required',
             'title'=> 'required',
             'description'=> 'required',
-            'image'=> 'required|image|mimes:jpg,png,jpeg'
+            'image'=> 'required|image|mimes:jpg,png,jpeg',
+            // 'trending' => 'required',
+            // 'status'=> 'required',
         ]);
 
+
+
         $input = $request->all();
+
+
 
         if ($request->file('image')) {
             $file = $request->file('image');
@@ -67,6 +74,26 @@ class BeritaController extends Controller
 
     }
 
+    public function changeStatus(Request $request)
+    {
+       $berita = Berita::find($request->id);
+
+
+          if($berita->status == '0'){
+            $berita->update([
+                'status' => false,
+            ]);
+
+          } else {
+            $berita->update([
+                'status' => true,
+            ]);
+          }
+
+        return response()->json([
+            'success'=>'Status change successfully.',
+        ]);
+    }
     /**
      * Display the specified resource.
      *

@@ -17,45 +17,8 @@ class KelasSeeder extends Seeder
      */
     public function run()
     {
-        $romawis = Romawi::all();
-        $kodes = Kode::all();
-
-        // Kelas::insert([
-        //     [
-        //         'kode_id'=> '1',
-        //         'romawi_id'=> '',
-
-
-        //     ],
-
-        //     [
-        //         'kode_id' => '2',
-
-
-        //     ],
-
-        //     [
-        //         'kode_id' => '3',
-
-
-        //     ],
-
-        //     [
-        //         'kode_id' => '4',
-
-
-        //     ]
-
-        // ]);
-
-        foreach ($romawis as $romawi) {
-            foreach ($kodes as $kode) {
-                $kelas = Kelas::create([
-                    'romawi_id' => $romawi['id'],
-                    'kode_id'   => $kode['id'],
-                    'guru_id'   => mt_rand(1, Guru::count()),
-                ]);
-            }
-        }
+        Kelass::insert([
+            ''
+        ]);
     }
 }

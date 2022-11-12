@@ -50,7 +50,7 @@
                                     </div>
                                 <div class="card-footer">
                                 <button class="btn btn-primary" type="submit">Submit</button>
-                                <a href="{{ route('siswa.index') }}"><button class="btn btn-secondary">Cancel</button></a>
+                                <a href="{{ route('thpelajaran.index') }}" class="btn btn-secondary">Cancel</></a>
                             </div>
                             </form>
                         </div>

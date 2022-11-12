@@ -28,7 +28,7 @@ Auth::routes();
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => 'admin'], function () {
+// Route::group(['middleware' => 'admin'], function () {
     Route::resource('guru', GuruController::class,);
     Route::resource('siswa', SiswaController::class,);
     Route::resource('user', UserController::class,);
@@ -37,17 +37,17 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('berita', BeritaController::class,);
     Route::resource('galeri', GaleriController::class);
     Route::resource('thpelajaran', TahunPelajaranController::class);
+    route::get('/changeStatus{id?}',[BeritaController::class,'changeStatus'])->name('changeStatus');
 
     // Route::get('/detail', [App\Http\Controllers\DetailController::class, 'index'])->name('detail');
-});
+// });
 
 
-Route::group(['middleware' => 'guru'], function () {
-    Route::resource('mapel', MapelController::class,);
-    Route::resource('kelas', KelasController::class,);
-
-    Route::resource('nilai', NilaiController::class,);
-});
+// Route::group(['middleware' => 'guru'], function () {
+//     Route::resource('mapel', MapelController::class,);
+//     Route::resource('kelas', KelasController::class,);
+//     Route::resource('nilai', NilaiController::class,);
+// });
 
 
 

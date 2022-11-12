@@ -37,20 +37,26 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $data->title }}</td>
-                                            <td><img src="{{ asset('image/berita/' . $data->image) }}" width="50" alt=""></td>
+                                            <td><img src="{{ asset('image/berita/' . $data->image) }}" width="50"
+                                                    alt=""></td>
                                             <td>
                                                 <div class="media-body">
-                                                  <label class="switch">
-                                                    <input type="checkbox" checked="chacked"><span class="switch-state" value="{{ $data->status }}"></span>
-                                                  </label></td>
-                                                 <td>
-                                                    <a href="{{ route('berita.edit', $data->id) }}">
-                                                        <button class="btn btn-secondary"type="button"><i
-                                                                class="mdi mdi-grease-pencil"></i></button>
-                                                    </a>
-                                                    <button class="btn btn-danger"
-                                                        data-name="{{ $data->title }}" data-id="{{ $data->id }}"
-                                                        type="submit"><i class="mdi mdi-delete-forever"></i></button>
+                                                    <label class="switch">
+                                                        <input data-id="{{ $data->id }}" class="toggle-class"
+                                                            type="checkbox" data-onstyle="success" data-offstyle="danger"
+                                                            data-toggle="toggle" data-on="Active" data-off="InActive"
+                                                            {{ $data->id ? 'checked' : '' }}>
+                                                        <span class="switch-state" value="{{ $data->id }}"></span>
+                                                    </label>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('berita.edit', $data->id) }}">
+                                                    <button class="btn btn-secondary"type="button"><i
+                                                            class="mdi mdi-grease-pencil"></i></button>
+                                                </a>
+                                                <button class="btn btn-danger" data-name="{{ $data->title }}"
+                                                    data-id="{{ $data->id }}" type="submit"><i
+                                                        class="mdi mdi-delete-forever"></i></button>
                                             </td>
                                             </form>
 
@@ -130,6 +136,24 @@
                     });
                 });
 
-
+                // Toogle Button for active status && inactive status
+                $(function() {
+                    $('.toggle-class').change(function() {
+                        var status = $(this).prop('checked') == true ? 1 : 0;
+                        var id = $(this).data('id');
+                        $.ajax({
+                            type: "GET",
+                            dataType: "json",
+                            url: '/changeStatus',
+                            data: {
+                                'id' : id,
+                                'status': status,
+                            },
+                            success: function(data) {
+                                console.log(data.success)
+                            }
+                        });
+                    })
+                })
             </script>
         @endsection

@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('mapels', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->enum('aspek',['keterampilan','bacaan','pengetahunan','hafalan']);
+            $table->enum('kategori',['A','B']);
             $table->timestamps();
         });
     }
