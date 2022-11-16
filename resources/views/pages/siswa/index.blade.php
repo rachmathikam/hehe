@@ -24,26 +24,20 @@
                         <div class="table-responsive">
                             <table class="display" id="basic-2">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-center">
                                         <th>No</th>
                                         <th>NIS</th>
                                         <th>Nama</th>
-                                        <th>Kelas</th>
                                         <th>Jenis Kelamin</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($data as $siswa)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $siswa->nis }}</td>
                                             <td><a href="{{ route('siswa.show',$siswa->id)}}">{{ $siswa->nama }}</a></td>
-                                            <td>
-                                            {{-- <a href="{{ route('siswa.show',$data->id) }}"> --}}
-                                                {{ $siswa->kelas->romawi->name }} - {{$siswa->kelas->kode->kode  }}
-                                            {{-- </a> --}}
-                                            </td>
                                             <td>{{ $siswa->gender }}</td>
                                             <td>
                                                     <a href="{{ route('siswa.show', $siswa->id) }}">
@@ -57,11 +51,18 @@
                                                     <button class="btn btn-danger" data-name="{{ $siswa->nama }}"
                                                         data-id="{{ $siswa->id }}" type="submit"><i
                                                             class="mdi mdi-delete-forever"></i></button>
-                                            </td>
+                                                 </td>
 
-                                        </tr>
+                                            </tr>
                                     @endforeach
                                 </tbody>
+                                <tr class="text-center">
+                                    <th>No</th>
+                                    <th>NIS</th>
+                                    <th>Nama</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Action</th>
+                                </tr>
                             </table>
                         </div>
                     </div>

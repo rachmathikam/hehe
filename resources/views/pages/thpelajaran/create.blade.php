@@ -27,25 +27,14 @@
                                     @csrf
 
                                     <div class="row ">
-                                        <div class="col">
+                                        <div class="col-6
+                                        ">
                                             <div class="mt-4 mb-4">
                                                 <h7 class="pb-3 mb-0">Tahun Pelajaran</h7>
                                                 <div class="col-auto">
-                                                   <input class="form-control" type="number" min="2013" name ="tahun" max="2099" step="1" value="2016" />
+                                                   <input class="form-control" type="number" min="2013" name ="tahun_akademik" max="2099" step="1" value="2016" />
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col">
-                                            <label for="name" class="form-label">Semester</label>
-                                            <select name="semester" id="name"
-                                                class="form-control @error('semester') is-invalid @enderror">
-                                                <option value="{{ old('semester') }}">-- Semester --</option>
-                                                @foreach (['semester' => "ganjil", "genap"] as $semester => $semesters)
-                                                    <option value="{{ $semesters}}" {{ old('semesters',$semesters) == $semesters ? "selected" : "" }}>
-                                                        {{ $semesters }}</option>
-                                                @endforeach
-                                            </select>
-                                            </select>
                                         </div>
                                     </div>
                                 <div class="card-footer">

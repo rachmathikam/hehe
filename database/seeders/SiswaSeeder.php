@@ -25,7 +25,6 @@ class SiswaSeeder extends Seeder
             'tanggal_lahir' =>'2012-07-7',
             'alamat' => 'JL.Raung No.15 Block Timur ',
             'agama' => 'Islam',
-            'kelas_id' => 2
 
         ],
 
@@ -38,7 +37,6 @@ class SiswaSeeder extends Seeder
             'tanggal_lahir' =>'2014-01-5',
             'alamat' => 'JL.Raung No.15 Block Timur ',
             'agama' => 'Islam',
-            'kelas_id' => 2
 
         ],
 
@@ -51,7 +49,6 @@ class SiswaSeeder extends Seeder
             'tanggal_lahir' =>'2012-08-2',
             'alamat' => 'JL.Raung No.15 Block Timur ',
             'agama' => 'Islam',
-            'kelas_id' => 1
 
         ],
 

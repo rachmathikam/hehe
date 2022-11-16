@@ -5,68 +5,94 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kelas;
 use App\Models\Siswa;
-use App\Models\Kode;
+use App\Models\KelasSiswa;
+
 
 
 
 class KelasController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         // $siswa = Siswa::count();
-       $data = Kelas::all();
-        // $data = Kelas::all();
-        // dd($datas);
+           $data = Kelas::all();
+            // dd($data);
+
         return view('pages.kelas.index',compact('data'));
     }
 
 
     public function create()
     {
-        $data = Kelas::with('kode')->get();
-        $kodes = Kode::all();
+
+        $kodes = kelas::all();
         // $data =  Kelas::all();
-        return view('pages.kelas.create',compact('data','kodes'));
+        return view('pages.kelas.create',compact('kodes'));
     }
 
 
     public function store(Request $request)
     {
+            //  dd($request->all());
+            $request->validate([
+                'nama_kelas' => 'required',
+                'kode_kelas' => 'required'
+            ]);
+                $input = $request->all();
+                $check = Kelas::where('nama_kelas',$input['nama_kelas'])->where('kode_kelas',$input['kode_kelas'])->count();
+                if($check > 0){
+                    return redirect()->route('kelas.create')->with('error','Data tahun pelajaran '.$input['nama_kelas'].'/'.$input['kode_kelas'].' sudah ada');
+                }
 
+                $data = Kelas::create($input);
+                return redirect()->route('kelas.index')->with('success', 'Kelas berhasil di tambahkan');
     }
 
 
     public function show($id)
     {
-        $data = Siswa::where('kelas_id', $id)->get();
 
-        return view('pages.kelas.show',compact('data'));
     }
 
     public function edit($id)
     {
-
+        $data = Kelas::findOrFail($id);
+            return view('pages.kelas.edit', compact('data'));
     }
 
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nama_kelas' => 'required',
+            'kode_kelas' => 'required'
+        ]);
+            $input = $request->all();
+            $check = Kelas::where('nama_kelas',$input['nama_kelas'])->where('kode_kelas',$input['kode_kelas'])->count();
+            if($check > 0){
+                return redirect()->route('kelas.create')->with('error','Data tahun pelajaran '.$input['nama_kelas'].'/'.$input['kode_kelas'].' sudah ada');
+            }
+            $data = Kelas::findOrFail($id);
+            $data->update($input);
+            return redirect()->route('kelas.index')->with('success', 'Kelas berhasil di tambahkan');
 
     }
 
     public function destroy($id)
     {
-        $data = Kelas::FindOrFail($id);
+        dd($id);
+        $data = Kelas::FindOrFail($id)->user();
+        dd($data);
 
         if($data->siswa()->count() > 0){
             return response()->json([
-                'success' => false,
+                'error' => true,
                 'message' => 'Kelas Terkait dengan siswa silahkan edit',
             ]);
         }else{
+            // dd($data);
             $data_del = $data->delete($data);
-
             if ($data_del) {
                 return response()->json([
                     'success' =>  true,

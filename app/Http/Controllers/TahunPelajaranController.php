@@ -39,15 +39,14 @@ class TahunPelajaranController extends Controller
     public function store(Request $request,)
     {
         $request->validate([
-            'tahun'    => 'required',
-            'semester' =>'required',
+            'tahun_akademik'    => 'required',
         ]);
 
         // dd($request);
         $data = $request->all();
-        $check = TahunPelajaran::where('tahun',$data['tahun'])->where('semester',$data['semester'])->count();
+        $check = TahunPelajaran::where('tahun_akademik',$data['tahun_akademik'])->count();
         if($check > 0){
-            return redirect()->route('thpelajaran.create')->with('error','Data tahun pelajaran '.$data['tahun'].'/'.$data['semester'].' sudah ada');
+            return redirect()->route('thpelajaran.create')->with('error','Data tahun pelajaran '.$data['tahun_akademik'].' sudah ada');
         }
         $data = TahunPelajaran::create($data);
         // dd($data);
@@ -94,12 +93,16 @@ class TahunPelajaranController extends Controller
     public function update(Request $request, TahunPelajaran $tahunPelajaran,$id)
     {
         $request->validate([
-            'tahun' => 'required',
-            'semester'   => 'required',
+            'tahun_akademik' => 'required',
+
         ]);
-        $input = $request->all();
+        $datas = $request->all();
+        $check = TahunPelajaran::where('tahun_akademik',$datas['tahun_akademik'])->count();
+        if($check > 0){
+            return redirect()->route('thpelajaran.create')->with('error','Data tahun pelajaran '.$datas['tahun_akademik'].' sudah ada');
+        }
         $data = TahunPelajaran::findOrFail($id);
-         $data->update($input);
+         $data->update($datas);
 
          if($data){
             return redirect()->route('thpelajaran.index')->with('success','Data berhasil di update');

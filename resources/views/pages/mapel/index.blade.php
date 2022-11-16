@@ -35,17 +35,25 @@
                         <div class="table-responsive">
                             <table class="display" id="basic-2">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-center">
                                         <th>No</th>
                                         <th>Mata Pelajaran</th>
+                                        <th>Kategori</th>
+                                        <th>Aspek</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($data as $item)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->name }}</td>
+                                            <td>{{ $item->kategori }}</td>
+                                            <td>
+                                            @foreach ($item->aspek as $items)
+                                                   - {{ $items->aspek }} <br>
+                                            @endforeach
+                                        </td>
                                             <td>
 
                                                 <a href="{{ route('mapel.edit', $item->id) }}">
@@ -60,6 +68,11 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
+                                <tr class="text-center">
+                                    <th>No</th>
+                                    <th>Mata Pelajaran</th>
+                                    <th>Action</th>
+                                </tr>
                             </table>
                         </div>
                     </div>

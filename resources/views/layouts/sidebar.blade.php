@@ -13,13 +13,6 @@
                     </div>
                 </li>
                 @endif
-                @if(Auth::user()->role_id == 2)
-                <li class="sidebar-main-title">
-                    <div>
-                        <h6>Guru Dasboard</h6>
-                    </div>
-                </li>
-                @endif
                 @if(Auth::user()->role_id == 3)
                 <li class="sidebar-main-title">
                     <div>
@@ -51,20 +44,26 @@
                 <li class="dropdown">
                     <a class="nav-link menu-title link-nav " href="{{ route('thpelajaran.index') }}"><i data-feather="clipboard"></i><span>Tahun Pelajaran</span></a>
                 </li>
+                <li class="dropdown">
+                    <a class="nav-link menu-title link-nav " href="{{ route('mapel.index') }}"><i data-feather="book"></i><span>Mata Pelajaran</span></a>
+                </li>
                 @endif
 
-                @if(Auth::user()->role_id == 3 || Auth::user()->role_id == 2)
                 <li class="dropdown">
-                    <a class="nav-link menu-title link-nav " href="{{ route('kelas.index') }}"><i data-feather="home"></i><span>Kelas</span></a>
+                    <a class="nav-link menu-title " href="javascript:void(0)"><i data-feather="home"></i><span>Kelas</span></a>
+                    <ul class="nav-submenu menu-content"  style="display: none;">
+                        <li><a href="{{ route('kelas.index') }}" class="">Kelas Siswa</a></li>
+                        <li><a href="{{ route('kelas_mapel.index') }}" class="">Kelas Mapel</a></li>
+                    </ul>
                 </li>
+
+
                 <li class="dropdown">
                     <a class="nav-link menu-title " href="javascript:void(0)"><i data-feather="edit"></i><span>Nilai</span></a>
                     <ul class="nav-submenu menu-content" style="display: none;">
-                        <li><a href="{{ route('nilai.index') }}" class="">Nilai</a></li>
-                        <li><a href="{{ route('mapel.index') }}" class="">Mata Pelajaran</a></li>
+                        {{-- <li><a href="{{ route('nilai.index') }}" class="">Nilai</a></li> --}}
                     </ul>
                 </li>
-                @endif
 
                 @if(Auth::user()->role_id == 4)
                 <li class="dropdown">

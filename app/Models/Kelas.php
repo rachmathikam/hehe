@@ -13,22 +13,24 @@ class Kelas extends Model
     protected $guarded = [];
     // protected $with = ['siswa'];
 
+    // public function siswa()
+    // {
+    //     // return $this->belongsToMany(Kelas::class,'kelas_siswas','siswa_id');
+    // }
+
+
+    public function tahun_pelajaran()
+    {
+        return $this->morphedByMany(TahunPelajaran::class, 'kelasables');
+    }
+
+    public function mapel()
+    {
+        return $this->morphedByMany(Mapel::class, 'kelasables');
+    }
     public function siswa()
     {
-        return $this->hasMany(Siswa::class,'kelas_id');
+        return $this->morphedByMany(Siswa::class, 'kelasables');
     }
 
-    public function kode()
-    {
-        return $this->belongsTo(Kode::class,'kode_id');
-    }
-
-    public function romawi()
-    {
-        return $this->belongsTo(Romawi::class,'romawi_id');
-    }
-
-    public function guru(){
-
-    }
 }

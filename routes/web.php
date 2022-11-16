@@ -5,7 +5,7 @@ use App\Http\Controllers\{LoginController, UserController,
      GuruController,MapelController,
      SiswaController, KelasController,
      FrontendController,BeritaController,
-     GaleriController,NilaiController,TahunPelajaranController};
+     GaleriController,NilaiController,TahunPelajaranController,KelasMapelController,KelasSiswaController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +37,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::resource('berita', BeritaController::class,);
     Route::resource('galeri', GaleriController::class);
     Route::resource('thpelajaran', TahunPelajaranController::class);
+    Route::resource('kelas_mapel',KelasMapelController::class);
+    Route::resource('kelas_siswa',KelasSiswaController::class);
+
     route::get('/changeStatus{id?}',[BeritaController::class,'changeStatus'])->name('changeStatus');
 
     // Route::get('/detail', [App\Http\Controllers\DetailController::class, 'index'])->name('detail');

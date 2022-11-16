@@ -46,6 +46,8 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/flag-icon.css') }}">
 <!-- Feather icon-->
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/feather-icon.css') }}">
+
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/select2.css') }}">
 <!-- Plugins css start-->
 <!-- Plugins css Ends-->
 <!-- Bootstrap css-->
@@ -137,6 +139,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script>
+        <script src="{{ asset('assets/js/select2/select2-custom.js') }}"></script>
 </body>
 
 {{-- <script>

@@ -12,4 +12,9 @@ class TahunPelajaran extends Model
     protected $table = 'tahun_pelajarans';
     protected $semester = ['ganjil','genap'];
     protected $guarded = [];
+
+    public function kelas()
+    {
+        return $this->morphToMany(Kelas::class, 'kelasables');
+    }
 }

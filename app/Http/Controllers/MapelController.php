@@ -5,21 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Mapel;
+use App\Models\Aspek;
+
 
 class MapelController extends Controller
 {
 
     public function index()
     {
-        $data = DB::table('mapels')->latest()->get();
+        // $data = DB::table('mapels')->latest()->get();
 
+        $data = Mapel::with('aspek')->get();
+        // dd($data);
         return view('pages.mapel.index',compact('data'));
     }
 
 
     public function create()
     {
-        return view('pages.mapel.create');
+        $data = Mapel::all();
+        $aspek = Aspek::all();
+        return view('pages.mapel.create',compact('data','aspek'));
     }
 
 

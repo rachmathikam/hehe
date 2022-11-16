@@ -33,28 +33,17 @@
                                 <div class="col">
                                     <div class="mt-4 mb-4">
                                         <h7 class="pb-3 mb-0">Tahun Pelajaran</h7>
-                                        <div class="col-auto">
-                                           <input class="form-control" type="number" min="2013" name ="tahun" max="2099" step="1" value="2013" />
+                                        <div class="col-6">
+                                           <input class="form-control" type="number" min="2013" name ="tahun_akademik" max="2099" step="1" value="2013" />
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="name" class="form-label">Semester</label>
-                                    <select name="semester" id="name"
-                                        class="form-control @error('semester') is-invalid @enderror">
-                                        <option value="{{ $tahun_pelajarans->semester }}">-- Semester --</option>
-                                        @foreach (['semester'=> 'ganjil','genap'] as $semesters)
-                                        <option value="{{ $semesters }}">{{ $semesters }}</option>
-                                    @endforeach
-                                    </select>
-                                    </select>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
                         <button class="btn btn-primary" id="tambah" type="submit">Submit</button>
-                        <a  href="{{ route('siswa.index') }}" class="btn btn-secondary" >Cancel</a>
+                        <a  href="{{ route('thpelajaran.index') }}" class="btn btn-secondary" >Cancel</a>
                     </div>
                 </form>
                 </div>

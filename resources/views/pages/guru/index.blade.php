@@ -24,7 +24,7 @@
                         <div class="table-responsive">
                             <table class="display" id="basic-2">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-center">
                                         <th>No</th>
                                         <th>NIP</th>
                                         <th>Nama</th>
@@ -35,7 +35,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($data as $guru)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $guru->nip }}</td>
                                             <td><a href="{{ route('guru.show',$guru->id) }}">{{ $guru->nama }}</a></td>
@@ -60,6 +60,14 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
+                                <tr class="text-center">
+                                    <th>No</th>
+                                    <th>NIP</th>
+                                    <th>Nama</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Mengajar</th>
+                                    <th>Action</th>
+                                </tr>
                             </table>
                         </div>
                     </div>

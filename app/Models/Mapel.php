@@ -12,10 +12,13 @@ class Mapel extends Model
     protected $guarded = [];
 
 
-    public function guru(){
-        return $this->hasOne(Guru::class,);
+    public function aspek()
+    {
+        return $this->belongsToMany(Aspek::class,'mapel_aspeks', 'mapel_id', 'aspek_id');
     }
-    public function nilai(){
-        return $this->hasOne(Nilai::class,'mapels_id');
+
+    public function kelas()
+    {
+        return $this->morphToMany(Kelas::class, 'kelasables');
     }
 }

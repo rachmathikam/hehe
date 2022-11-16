@@ -18,6 +18,7 @@ class CreateMapelSeeder extends Seeder
         Mapel::insert([
             [
                 'name' => 'Bahasa Indonesia',
+
             ],
             [
                 'name' => 'Matematika',

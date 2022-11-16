@@ -35,6 +35,30 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="">Kategori</label>
+                                            <select name="" id="" class="form-select">
+                                                <option value="">-- Pilih Kategori --</option>
+                                                @foreach (['kategori' => 'A','B'] AS $data )
+                                                <option value="{{ $data}}">{{ $data }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="d-block">Pilih Aspek:</label>
+                                        <select class="js-example-placeholder-multiple col-sm-12" name="aspek[]" multiple="multiple">
+                                          <option value="AL">Pengetahuan</option>
+                                          <option value="WY">Keterampilan</option>
+                                          <option value="AL">Bacaan</option>
+                                          <option value="WY">Hafalan</option>
+                                        </select>
+                                      </div>
+                                    <br>
                                     <div class="card-footer">
                                         <button class="btn btn-primary" type="submit">Submit</button>
                                         <a href="{{ route('mapel.index') }}" class="btn btn-secondary">Cancel</a>
@@ -46,4 +70,9 @@
 
                 </div>
             </div>
+
         @endsection
+
+
+
+

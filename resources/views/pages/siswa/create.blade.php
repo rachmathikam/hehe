@@ -77,33 +77,17 @@
                                                 placeholder="Jenis Kelamin" value="{{ old('gender') }}">
                                         </div>
                                     </div>
-
-                                    <div class="row ">
-                                        <div class="col">
+                                        {{-- <div class="col">
                                             <label for="name" class="form-label">Kelas</label>
-                                            <select name="romawi_id" id="name"
-                                                class="form-control @error('romawi_id') is-invalid @enderror">
-                                                <option value="{{ old('romawi_id') }}">-- Kelas --</option>
-                                                @foreach ($romawi as $romawis)
-                                                    <option value="{{ $romawis->id }}" @selected($romawis->id)>
-                                                        {{ $romawis->name }}</option>
+                                            <select name="kelas_id"                                                                                                                                                                                                                                                                                                                                                                                                                          " id="name"
+                                                class="form-control @error('kelas') is-invalid @enderror">
+                                                <option value="{{ old('kelas') }}">-- Pilih Kelas --</option>
+                                                @foreach ($kelas as $kelass)
+                                                    <option value="{{ $kelass->id }}" @selected($kelass->id)>
+                                                        {{ $kelass->nama_kelas }} - {{ $kelass->kode_kelas }}</option>
                                                 @endforeach
                                             </select>
-                                            </select>
-                                        </div>
-                                        <div class="col">
-                                            <label for="name" class="form-label">Kode</label>
-                                            <select name="kode_id"                                                                                                                                                                                                                                                                                                                                                                                                                          " id="name"
-                                                class="form-control @error('kode') is-invalid @enderror">
-                                                <option value="{{ old('kode') }}">-- kode --</option>
-                                                @foreach ($kode as $kodes)
-                                                    <option value="{{ $kodes->id }}" @selected($kodes->id)>
-                                                        {{ $kodes->kode }}</option>
-                                                @endforeach
-                                            </select>
-                                            </select>
-                                        </div>
-                                    </div>
+                                        </div> --}}
                                     <div class="mt-4 mb-4">
                                         <div class="row">
                                             <div class="col">

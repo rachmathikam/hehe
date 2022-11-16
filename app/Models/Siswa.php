@@ -10,7 +10,7 @@ class Siswa extends Model
     use HasFactory;
     protected $tabel = 'siswas';
     protected $guarded = [];
-    // protected $with = ['kelas'];
+    // protected $with = ['kelass'];
 
     public function user()
     {
@@ -19,9 +19,8 @@ class Siswa extends Model
 
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class);
+        return $this->morphToMany(Kelas::class, 'kelasables');
     }
-
     public function nilai()
     {
         return $this->BelongsTo(Nilai::class);

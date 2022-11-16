@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Siswa,User,Kelas,Kode,Romawi};
+use App\Models\{Siswa,User,KelasSiswa, Kelas};
 use DB;
 use Hash;
 class SiswaController extends Controller
@@ -15,9 +15,10 @@ class SiswaController extends Controller
      */
     public function index(Request $request)
     {
-        // $data = Siswa::join('kelass','kelass.id','=','siswas.kelas_id')->get();`
-        $data = Siswa::all();
+
+       $data = Siswa::all();
         // dd($data);
+
         return view('pages.siswa.index',compact('data'));
     }
 
@@ -29,9 +30,8 @@ class SiswaController extends Controller
     public function create()
     {
         $data = Siswa::all();
-        $kode = Kode::all();
-        $romawi = Romawi::all();
-        return view('pages.siswa.create',compact('data','romawi','kode'));
+        $kelas = Kelas::all();
+        return view('pages.siswa.create',compact('data','kelas'));
     }
 
     /**
@@ -54,9 +54,6 @@ class SiswaController extends Controller
             'gender' => 'required',
             'agama' => 'required',
             'alamat' => 'required',
-            'kode_id' => 'required',
-            'romawi_id' => 'required',
-
             // 'role_id' => 'nullable',
         ]);
         // dd($request->toArray());
@@ -73,9 +70,6 @@ class SiswaController extends Controller
 
             ]);
 
-            $kelas = Kelas::where('romawi_id', $input['romawi_id'])
-                        ->where('kode_id', $input['kode_id'])->first();
-
             $userid = User::get()->last();
 
             Siswa::create([
@@ -87,11 +81,10 @@ class SiswaController extends Controller
                 'agama' => $input['agama'],
                 'alamat' => $input['alamat'],
                 'user_id' => $userid->id,
-                'kelas_id' => $kelas->id,
 
-                // 'kode' => $input['kode'],
+
             ]);
-            // dd($input['kode']);
+
 
 
         DB::commit();

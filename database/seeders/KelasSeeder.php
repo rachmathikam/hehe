@@ -5,9 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Kelas;
-use App\Models\Romawi;
-use App\Models\Kode;
-use App\Models\Guru;
 class KelasSeeder extends Seeder
 {
     /**
@@ -17,8 +14,57 @@ class KelasSeeder extends Seeder
      */
     public function run()
     {
-        Kelass::insert([
-            ''
+        Kelas::insert([
+            [
+                'nama_kelas' => 'VII',
+                'kode_kelas' => 'A',
+            ],
+            [
+                'nama_kelas' => 'VII',
+                'kode_kelas' => 'B',
+            ],
+            [
+                'nama_kelas' => 'VII',
+                'kode_kelas' => 'C',
+            ],
+            [
+                'nama_kelas' => 'VII',
+                'kode_kelas' => 'D',
+            ],
+            [
+                'nama_kelas' => 'VIII',
+                'kode_kelas' => 'A',
+            ],
+            [
+                'nama_kelas' => 'VIII',
+                'kode_kelas' => 'B',
+            ],
+            [
+                'nama_kelas' => 'VIII',
+                'kode_kelas' => 'C',
+            ],
+            [
+                'nama_kelas' => 'VIII',
+                'kode_kelas' => 'D',
+            ],
+            [
+                'nama_kelas' => 'IX',
+                'kode_kelas' => 'A',
+            ],
+            [
+                'nama_kelas' => 'IX',
+                'kode_kelas' => 'A',
+            ],
+            [
+                'nama_kelas' => 'IX',
+                'kode_kelas' => 'A',
+            ],
+            [
+                'nama_kelas' => 'IX',
+                'kode_kelas' => 'A',
+            ]
+
+
         ]);
     }
 }
