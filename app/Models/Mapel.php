@@ -21,4 +21,9 @@ class Mapel extends Model
     {
         return $this->morphToMany(Kelas::class, 'kelasables');
     }
+
+    public function guru()
+    {
+        return $this->belongsTo(Mapel::class);
+    }
 }

@@ -125,6 +125,7 @@
                 $(document).ready(function() {
                     $('.btn-danger').click(function(e) {
                         e.preventDefault();
+
                         let id = $(this).attr('data-id');
                         let name = $(this).attr('data-name');
 
