@@ -52,7 +52,7 @@
                 <li class="dropdown">
                     <a class="nav-link menu-title " href="javascript:void(0)"><i data-feather="home"></i><span>Kelas</span></a>
                     <ul class="nav-submenu menu-content"  style="display: none;">
-                        <li><a href="{{ route('kelas.index') }}" class="">Kelas Siswa</a></li>
+                        <li><a href="{{ route('kelas_siswa.index') }}" class="">Kelas Siswa</a></li>
                         <li><a href="{{ route('kelas_mapel.index') }}" class="">Kelas Mapel</a></li>
                     </ul>
                 </li>
@@ -61,7 +61,7 @@
                 <li class="dropdown">
                     <a class="nav-link menu-title " href="javascript:void(0)"><i data-feather="edit"></i><span>Nilai</span></a>
                     <ul class="nav-submenu menu-content" style="display: none;">
-                        {{-- <li><a href="{{ route('nilai.index') }}" class="">Nilai</a></li> --}}
+                        <li><a href="{{ route('nilai.index') }}" class="">Nilai</a></li>
                     </ul>
                 </li>
 

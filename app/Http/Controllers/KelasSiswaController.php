@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kelas;
+use App\Models\KelasSiswa;
 class KelasSiswaController extends Controller
 {
     /**
@@ -13,7 +14,9 @@ class KelasSiswaController extends Controller
      */
     public function index()
     {
-
+        $data = Kelas::all();
+        // dd($kelas);
+        return view('pages.kelas_siswa.index',compact('data'));
     }
 
     /**
@@ -23,7 +26,7 @@ class KelasSiswaController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -45,8 +48,8 @@ class KelasSiswaController extends Controller
      */
     public function show($id)
     {
-        $data = Kelas::with('siswa')->findOrFail($id);
-        // dd($data->toArray());
+        $data = KelasSiswa::where('siswa_id',$id)->with('siswa','kelas')->get();
+        // dd($data);
         return view('pages.kelas_siswa.show',compact('data'));
     }
 

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Nilai;
 use App\Models\Kelas;
+use App\Models\KelasSiswa;
+use App\Models\TahunPelajaran;
+
+
 
 use Illuminate\Http\Request;
 
@@ -16,10 +20,11 @@ class NilaiController extends Controller
      */
     public function index()
     {
-        $kelas = Kelas::all();
-        // dd($kelas);
+        $kelas = KelasSiswa::with('nilai')->get();
+        dd($kelas);
+        $tahun_pelajaran = TahunPelajaran::all();
         $nilai = Nilai::all();
-        return view('pages.nilai.index',compact('nilai','kelas'));
+        return view('pages.nilai.index',compact('nilai','kelas','tahun_pelajaran'));
     }
 
     /**
@@ -49,13 +54,12 @@ class NilaiController extends Controller
      * @param  \App\Models\Nilai  $nilai
      * @return \Illuminate\Http\Response
      */
-    public function show(Nilai $nilai)
+    public function show(Request $request,$id)
     {
-        {
-            $data = Siswa::all();
 
-            return view('pages.kelas.show',compact('data'));
-        }
+        $Kelas = KelasSiswa::where('siswa_id',$request->id)->with('kelas','mapel');
+        dd($kelas);
+
     }
 
     /**

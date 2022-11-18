@@ -14,7 +14,7 @@ class TahunPelajaran extends Model
     protected $guarded = [];
 
     public function kelas()
-    {
-        return $this->morphToMany(Kelas::class, 'kelasables');
-    }
+        {
+            return $this->belongsTo(Kelas::class,'id');
+        }
 }

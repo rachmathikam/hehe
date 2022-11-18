@@ -15,6 +15,7 @@ class TahunPelajaranController extends Controller
     public function index()
     {
         $tahun_pelajaran = TahunPelajaran::all();
+
         return view('pages.thpelajaran.index', compact('tahun_pelajaran'));
     }
 

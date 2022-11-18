@@ -32,13 +32,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data->siswa as $item)
+                                    @foreach ($data as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->nis }}</td>
-                                            <td>{{ $item->nama }}</td>
-                                            <td>{{ $item->gender }}</td>
-
+                                            <td>{{ $item->siswa->nis }}</td>
+                                            <td>{{ $item->siswa->nama }}</td>
+                                            <td>{{ $item->siswa->gender }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

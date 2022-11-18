@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('nilais', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('kelas_id')->constrained()->on('kelass')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('kelas_siswa_id')->constrained()->on('kelas_siswas')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('tahun_pelajaran_id')->constrained()->on('tahun_pelajarans')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('mapel_id')->constrained()->on('mapels')->onUpdate('cascade')->onDelete('cascade');
             $table->enum('semester',['ganjil','genap']);
             $table->string('jenis_ujian');
             $table->string('nilai_h1');

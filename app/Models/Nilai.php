@@ -13,10 +13,16 @@ class Nilai extends Model
     protected $guarded = [];
 
     public function mapel(){
-        return $this->BelongSto(Mapel::class,);
+        return $this->BelongSto(Mapel::class,'mapel_id','id');
     }
 
     public function siswa(){
         return $this->hasMany(Siswa::class,'id', 'siswa_id');
     }
+
+
+    public function kelassiswa(){
+        return $this->hasMany(KelasSiswa::class,'id', 'kelas_siswa_id');
+    }
+
 }

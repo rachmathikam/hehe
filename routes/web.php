@@ -39,6 +39,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::resource('thpelajaran', TahunPelajaranController::class);
     Route::resource('kelas_mapel',KelasMapelController::class);
     Route::resource('kelas_siswa',KelasSiswaController::class);
+    Route::resource('nilai',NilaiController::class);
 
     route::get('/changeStatus{id?}',[BeritaController::class,'changeStatus'])->name('changeStatus');
 
