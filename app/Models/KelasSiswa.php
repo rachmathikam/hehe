@@ -12,14 +12,19 @@ class KelasSiswa extends Model
     protected $table = 'kelas_siswas';
     protected $guarded = [];
 
-    // public function kelas()
-    // {
-    //     return $this->belongsTo(Kelas::class,'kelas_id','id');
-    // }
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class,'kelas_id','id');
+    }
 
-    // public function siswa()
-    // {
-    //     return $this->belongsTo(Siswa::class,'siswa_id','id');
-    // }
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class,'siswa_id','id');
+    }
+    public function nilai()
+    {
+        return $this->belongsTo(Nilai::class,'nilai_id','id');
+    }
+
 
 }

@@ -76,11 +76,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data->mapel as $item)
+                                    @foreach ($data as $item)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->name }}</td>
-                                            <td>{{ $item->kategori }}</td>
+                                            <td>{{ $loop->mapel->iteration }}</td>
+                                            <td>{{ $item->mapel->name }}</td>
+                                            <td>{{ $item->mapel->kategori }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

@@ -17,20 +17,19 @@ class TahunPelajaranSeeder extends Seeder
     {
 
 
-           $data = [
-                '2016',
-                '2017',
-                '2018',
-                '2019',
-                '2020',
-                '2021',
-                '2022',
-           ];
+           TahunPelajaran::insert([
 
-           foreach ($data as $datas) {
-                TahunPelajaran::create([
-                    'tahun_akademik' => $datas
-                ]);
-           }
+                [
+                    'tahun_akademik' => '2016',
+
+                ],
+
+                [
+                    'tahun_akademik'=> '2017',
+
+                ],
+
+                ]) ;
+
     }
 }

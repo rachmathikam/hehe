@@ -52,7 +52,7 @@ class KelasMapelController extends Controller
     public function show($id)
     {
 
-        $data = Kelas::with('mapel')->findOrFail($id);
+        $data = KelasMapel::where('mapel_id',$id)->with('kelas','mapel')->get();
         // dd($data->toArray());
         // dd($data->toArray());
         // $data = Kelas::where('kelas_id',$id)->with('kelas','mapel')->get();
