@@ -19,8 +19,8 @@ class Aspek extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function mapel()
-    {
-        return $this->belongsToMany(Mapel::class, 'mapel_aspeks', 'mapel_id', 'aspek_id');
-    }
+    // public function mapel()
+    // {
+    //     return $this->belongsToMany(Mapel::class, 'mapel_aspeks', 'mapel_id', 'aspek_id');
+    // }
 }

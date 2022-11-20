@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('kelass', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tahun_pelajaran_id')->nullable()->constrained()->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('tahun_pelajaran_id')->nullable()->constrained()->on('tahun_pelajarans')->onUpdate('cascade')->onDelete('cascade');
             $table->enum('nama_kelas',['VII','VIII','IX']);
             $table->enum('kode_kelas',['A','B','C','D']);
             $table->timestamps();

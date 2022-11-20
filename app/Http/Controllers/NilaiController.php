@@ -18,13 +18,14 @@ class NilaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $kelas = KelasSiswa::with('nilai')->get();
-        dd($kelas);
+        //dd($kelas);
+        $keyword = $request->keyword;
+        $kelas = Nilai::with('kelassiswa')->where('tahun_pelajaran_id', 'LIKE', '%'.$keyword.'%')->get();
         $tahun_pelajaran = TahunPelajaran::all();
         $nilai = Nilai::all();
-        return view('pages.nilai.index',compact('nilai','kelas','tahun_pelajaran'));
+        return view('pages.nilai.index',compact('nilai','kelas','tahun_pelajaran','keyword'));
     }
 
     /**
@@ -54,11 +55,18 @@ class NilaiController extends Controller
      * @param  \App\Models\Nilai  $nilai
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request,$id)
+    public function show($nilai)
     {
+        // $tahun = "äbc";
 
-        $Kelas = KelasSiswa::where('siswa_id',$request->id)->with('kelas','mapel');
-        dd($kelas);
+        // dd($tahun);
+
+        $akademik = TahunPelajaran::findOne("tahun_akademik", $id);
+
+        return response()->json("data", $akademik);
+
+        // $Kelas = KelasSiswa::where('siswa_id',$request->id)->with('kelas','mapel');
+        // dd($kelas);
 
     }
 

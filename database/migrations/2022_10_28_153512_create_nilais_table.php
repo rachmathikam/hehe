@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('kelas_siswa_id')->constrained()->on('kelas_siswas')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('tahun_pelajaran_id')->constrained()->on('tahun_pelajarans')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('mapel_id')->constrained()->on('mapels')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('mapel_aspek_id')->constrained()->on('mapel_aspeks')->onUpdate('cascade')->onDelete('cascade');
             $table->enum('semester',['ganjil','genap']);
             $table->string('jenis_ujian');
             $table->string('nilai_h1');

@@ -62,6 +62,9 @@
                     <a class="nav-link menu-title " href="javascript:void(0)"><i data-feather="edit"></i><span>Nilai</span></a>
                     <ul class="nav-submenu menu-content" style="display: none;">
                         <li><a href="{{ route('nilai.index') }}" class="">Nilai</a></li>
+                        <li><a href="{{ route('nilai.index') }}" class="">Nilai PTS</a></li>
+                        <li><a href="{{ route('nilai.index') }}" class="">Nilai PAS</a></li>
+
                     </ul>
                 </li>
 
