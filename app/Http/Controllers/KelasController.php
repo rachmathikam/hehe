@@ -81,14 +81,13 @@ class KelasController extends Controller
 
     public function destroy($id)
     {
-        dd($id);
-        $data = Kelas::FindOrFail($id)->user();
-        dd($data);
+        $data = Kelas::FindOrFail($id)->delete();
+        // dd($data->siswa()->count());
 
-        if($data->siswa()->count() > 0){
+        if($data){
             return response()->json([
                 'error' => true,
-                'message' => 'Kelas Terkait dengan siswa silahkan edit',
+                'message' => 'Data Berhasil di Hapus',
             ]);
         }else{
             // dd($data);
@@ -96,7 +95,6 @@ class KelasController extends Controller
             if ($data_del) {
                 return response()->json([
                     'success' =>  true,
-                    'message' => 'Data Berhasil di Hapus',
                 ]);
             }
         }

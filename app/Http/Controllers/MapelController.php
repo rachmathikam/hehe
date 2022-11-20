@@ -90,7 +90,7 @@ class MapelController extends Controller
     public function destroy($id)
     {
         $data = Mapel::FindOrFail($id);
-
+        
         if($data->guru()->count()){
             return response()->json([
                 'error' => false,
